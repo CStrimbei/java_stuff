@@ -17,10 +17,8 @@ public class Main {
         System.out.println("Hello world!");
         String[] languages = {"C", "C++", "C#", "Python", "Go", "Rust", "JavaScript", "PHP", "Swift", "Java"};
         int n = (int) (Math.random() * 1_000_000);
-
         String input0 = "10101";
         int i = Integer.parseInt(input0 , 2);
-
         String nrhex = "FF";
         int dec = Integer.parseInt(nrhex, 16);
         int finalRez = 0;

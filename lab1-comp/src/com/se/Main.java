@@ -7,7 +7,8 @@ public class Main {
         String[] languages = {"C", "C++", "C#", "Python", "Go", "Rust", "JavaScript", "PHP", "Swift", "Java"};
         int n = (int) (Math.random() * 1_000_000);
         n*=3;
-        int i = (byte) 10101;
+        String input0 = "10101";
+        int i = Integer.parseInt(input0 , 2);
         n+=i;
         String nrhex = "FF";
         int dec = Integer.parseInt(nrhex, 16);
@@ -21,7 +22,7 @@ public class Main {
             n/=10;
         }
         int rez = 0;
-        if (finrez>10){
+        while (finrez>9){
             int decc = finrez%10;
             rez+=decc;
             finrez/=10;

@@ -1,6 +1,6 @@
 package com.se;
 
-public class Main {
+public class HelloWorld {
 
     public static int sumDig(int n) {
         int rezult = 0;

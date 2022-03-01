@@ -1,8 +1,20 @@
 package com.se;
 import java.io.InputStreamReader;
-import java.sql.SQLOutput;
 import java.util.Scanner;
+import java.util.Random;
+
+
 public class Homework {
+
+    public boolean isNeighbor() {
+        boolean verify = true;
+
+
+
+        return verify;
+    }
+
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int n = 0;
@@ -20,7 +32,13 @@ public class Homework {
         for (int i = 2; i < args.length; i++){
             words[i-2]=args[i].charAt(0);
         }
+
+        Random generate = new Random();
+        int randomletter = generate.nextInt(args.length-2);
+
+
         System.out.println(words);
+        //System.out.println(randomletter);
     }
 
 }

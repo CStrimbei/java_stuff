@@ -21,6 +21,9 @@ public static int stringsToChars(String words1, String words2){
 }
 
     public static void main(String[] args) {
+
+    long timpstart = System.nanoTime();
+
         int n = 0;
         int p = 0;
         if (args.length >= 3) {
@@ -85,6 +88,11 @@ public static int stringsToChars(String words1, String words2){
             System.out.println();
         }*/
         System.out.println(Arrays.toString(data_structure)+ " ");
+        long timpsfarsit = System.nanoTime();
+        long timptotal = timpsfarsit - timpstart;
+        if(n>=30000)
+            System.out.println(timptotal); //needs a fix for n>=30000
+
     }
 
 }

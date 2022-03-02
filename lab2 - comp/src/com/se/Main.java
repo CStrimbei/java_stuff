@@ -7,14 +7,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        List<Events> evnt = new ArrayList<>();
+        List<Events> event = new ArrayList<>();
         List<Rooms> room = new ArrayList<>();
 
-        evnt.add(new Events(100, 8, 10, "C1"));
-        evnt.add(new Events(100, 10, 12, "C2"));
-        evnt.add(new Events(30, 8, 10, "L1"));
-        evnt.add(new Events(30, 8, 10, "L2"));
-        evnt.add(new Events(30, 10, 12, "L3"));
+        event.add(new Events(100, 8, 10, "C1"));
+        event.add(new Events(100, 10, 12, "C2"));
+        event.add(new Events(30, 8, 10, "L1"));
+        event.add(new Events(30, 8, 10, "L2"));
+        event.add(new Events(30, 10, 12, "L3"));
 
         room.add(new Rooms(30, Types.lab, "401"));
         room.add(new Rooms(30, Types.lab, "403"));
@@ -23,7 +23,7 @@ public class Main {
 
         System.out.print("Events: ");
 
-        for(Events e : evnt)
+        for(Events e : event)
             System.out.print(e + " ");
 
         System.out.println();

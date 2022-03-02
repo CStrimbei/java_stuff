@@ -64,22 +64,27 @@ public static int stringsToChars(String words1, String words2){
 
         for(String word : words)
             System.out.println(word);
-
+        int contor = 0;
         int boolmatrix[][] = new int[n][n];
-
+        String[] data_structure = new String[n];
+        Arrays.fill(data_structure, "");
         for(int i = 0; i<n; i++){
+            data_structure[contor] += words[i] + " ";
             for(int k=i+1; k<n; k++){
                 boolmatrix[i][k] = stringsToChars(words[i], words[j]);
                 boolmatrix[k][i] = stringsToChars(words[i], words[j]);
+                data_structure[contor] += words[j] + " ";
             }
+            contor++;
         }
 
-        for(int g = 0; g < boolmatrix.length; g++){
+        /*for(int g = 0; g < boolmatrix.length; g++){
             for(int s = 0; s < boolmatrix.length; s++){
                 System.out.print(boolmatrix[g][s] + " ");
             }
             System.out.println();
-        }
+        }*/
+        System.out.println(Arrays.toString(data_structure)+ " ");
     }
 
 }

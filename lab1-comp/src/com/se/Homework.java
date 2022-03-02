@@ -1,17 +1,24 @@
 package com.se;
+import java.util.Arrays;
 import java.util.Random;
 
 
 public class Homework {
 
-    public boolean isNeighbor() {
-        boolean verify = true;
-
-
-
-        return verify;
+public static int stringsToChars(String words1, String words2){
+    int returnedInt = 0;
+    for(int k = 0; k<words1.length(); k++){
+        for(int b = 0; b<words2.length(); b++){
+            char c1 = words1.charAt(k);
+            char c2 = words2.charAt(b);
+            if(c1 == c2) {
+                returnedInt = 1;
+                break;
+            }
+        }
     }
-
+    return returnedInt;
+}
 
     public static void main(String[] args) {
         int n = 0;
@@ -39,7 +46,7 @@ public class Homework {
 
             String word="";
 
-            for(int w=0; w<=p; w++) {
+            for(int w=0; w<p; w++) {
 
                 int randomletter = generate.nextInt(characters.length - 1);
                 char letter = characters[randomletter];
@@ -58,9 +65,21 @@ public class Homework {
         for(String word : words)
             System.out.println(word);
 
+        int boolmatrix[][] = new int[n][n];
 
+        for(int i = 0; i<n; i++){
+            for(int k=i+1; k<n; k++){
+                boolmatrix[i][k] = stringsToChars(words[i], words[j]);
+                boolmatrix[k][i] = stringsToChars(words[i], words[j]);
+            }
+        }
 
-        //System.out.println(randomletter);
+        for(int g = 0; g < boolmatrix.length; g++){
+            for(int s = 0; s < boolmatrix.length; s++){
+                System.out.print(boolmatrix[g][s] + " ");
+            }
+            System.out.println();
+        }
     }
 
 }

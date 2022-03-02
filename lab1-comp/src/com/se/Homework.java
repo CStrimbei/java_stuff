@@ -1,6 +1,4 @@
 package com.se;
-import java.io.InputStreamReader;
-import java.util.Scanner;
 import java.util.Random;
 
 
@@ -16,7 +14,6 @@ public class Homework {
 
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(new InputStreamReader(System.in));
         int n = 0;
         int p = 0;
         if (args.length >= 3) {
@@ -28,16 +25,41 @@ public class Homework {
         } else if (args.length < 2) {
             System.out.println("Ai introdus prea putine argumente!");
         }
-        char[] words = new char[args.length-2];
+        char[] characters = new char[p]; int j = 0;
         for (int i = 2; i < args.length; i++){
-            words[i-2]=args[i].charAt(0);
+            characters[j++]=args[i].charAt(0);
         }
 
         Random generate = new Random();
-        int randomletter = generate.nextInt(args.length-2);
 
 
-        System.out.println(words);
+        String[] words = new String[n];
+        for(int k = 0; k<n; k++){
+            generate = new Random();
+
+            String word="";
+
+            for(int w=0; w<=p; w++) {
+
+                int randomletter = generate.nextInt(characters.length - 1);
+                char letter = characters[randomletter];
+                /*
+                while (word.contains(String.valueOf(letter))) {
+                    randomletter = generate.nextInt(characters.length - 1);
+                    letter = characters[randomletter];
+                }*/
+                word += letter;
+            }
+
+
+            words[k]=word;
+        }
+
+        for(String word : words)
+            System.out.println(word);
+
+
+
         //System.out.println(randomletter);
     }
 

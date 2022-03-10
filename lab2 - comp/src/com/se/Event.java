@@ -64,11 +64,16 @@ public class Event {
 
         Event event = (Event) o;
 
+        if (start != event.start) return false;
+        if (end != event.end) return false;
         return name.equals(event.name);
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        int result = start;
+        result = 31 * result + end;
+        result = 31 * result + name.hashCode();
+        return result;
     }
 }

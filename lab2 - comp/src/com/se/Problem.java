@@ -21,6 +21,7 @@ public class Problem {
             if(e.equals(event))
                 return;
         }
+        events.add(event);
     }
 
     public void runProblem(){

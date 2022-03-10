@@ -1,5 +1,7 @@
 package com.se;
 
+import java.util.Objects;
+
 public class Events {
     public int size;
     public int start;
@@ -10,15 +12,6 @@ public class Events {
         this.start=START;
         this.end=END;
         this.name=NAME;
-    }
-
-    @Override
-    public String toString() {
-        return name + "(" +
-                "size=" + size +
-                ", start=" + start +
-                ", end=" + end +
-                ')';
     }
 
     public double getSize() {
@@ -51,5 +44,37 @@ public class Events {
 
     public void setStart(int start) {
         this.start = start;
+    }
+
+    public int checkEquals(){
+        if(equals(name)==true){
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    /*public String toString() {
+
+        if(checkEquals()==1)
+            return name + "(" +
+                "size=" + size +
+                ", start=" + start +
+                ", end=" + end +
+                ')';
+        else return "Nu poti adauga acelasi eveniment de 2 ori!";
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Events events = (Events) o;
+        return size == events.size && start == events.start && end == events.end && Objects.equals(name, events.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(size, start, end, name);
     }
 }

@@ -1,6 +1,8 @@
 package com.se;
 
-public class Rooms{
+import java.util.Objects;
+
+public class Rooms {
     public int cap;
     public String name;
     public Types type;
@@ -9,16 +11,6 @@ public class Rooms{
         this.type=TYPE;
         this.name=NAME;
     }
-
-    @Override
-    public String toString() {
-        return name + '(' +
-                "cap=" + cap +
-                ", name='" + name + '\'' +
-                ", type=" + type +
-                ')';
-    }
-
 
     public int getCap() {
         return cap;
@@ -42,5 +34,27 @@ public class Rooms{
 
     public void setType(Types type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return name + '(' +
+                "cap=" + cap +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ')';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rooms rooms = (Rooms) o;
+        return cap == rooms.cap && Objects.equals(name, rooms.name) && type == rooms.type;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cap, name, type);
     }
 }

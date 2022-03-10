@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProbInst {
+
     public void instProblem(){
         List<Events> event = new ArrayList<>();
         List<Rooms> room = new ArrayList<>();
 
+        event.add(new Events(100, 8, 10, "C1"));
         event.add(new Events(100, 8, 10, "C1"));
         event.add(new Events(100, 10, 12, "C2"));
         event.add(new Events(30, 8, 10, "L1"));
@@ -31,5 +33,3 @@ public class ProbInst {
             System.out.print(r + " ");
     }
 }
-
-

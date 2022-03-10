@@ -5,31 +5,35 @@ import java.util.List;
 
 public class Problem {
 
-    public void instProblem(){
-        List<Event> event = new ArrayList<>();
-        List<Room> room = new ArrayList<>();
+    List<Event> events = new ArrayList<>();
+    List<Room> rooms = new ArrayList<>();
 
-        event.add(new Event(100, 8, 10, "C1"));
-        event.add(new Event(100, 10, 12, "C2"));
-        event.add(new Event(30, 8, 10, "L1"));
-        event.add(new Event(30, 8, 10, "L2"));
-        event.add(new Event(30, 10, 12, "L3"));
+    public void addRoom(Room room){
+        for (Room r:rooms) {
+            if(r.equals(room))
+                return;
+        }
+        rooms.add(room);
+    }
 
-        room.add(new Room(30, Types.lab, "401"));
-        room.add(new Room(30, Types.lab, "403"));
-        room.add(new Room(30, Types.lab, "405"));
-        room.add(new Room(30, Types.lecture_hall, "401"));
+    public void addEvent(Event event){
+        for(Event e:events){
+            if(e.equals(event))
+                return;
+        }
+    }
 
+    public void runProblem(){
         System.out.print("Events: ");
 
-        for(Event e : event)
+        for(Event e : events)
             System.out.print(e + " ");
 
         System.out.println();
 
         System.out.print("Rooms: ");
 
-        for(Room r : room)
+        for(Room r : rooms)
             System.out.print(r + " ");
     }
 }

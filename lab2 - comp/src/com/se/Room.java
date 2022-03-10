@@ -6,10 +6,11 @@ public class Room {
     public int cap;
     public String name;
     public Types type;
+
     public Room(int CAP, Types TYPE, String NAME) {
-        this.cap=CAP;
-        this.type=TYPE;
-        this.name=NAME;
+        this.cap = CAP;
+        this.type = TYPE;
+        this.name = NAME;
     }
 
     public int getCap() {
@@ -49,12 +50,9 @@ public class Room {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Room room = (Room) o;
-        return cap == room.cap && Objects.equals(name, room.name) && type == room.type;
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(cap, name, type);
+        Room room = (Room) o;
+
+        return name.equals(room.name);
     }
 }

@@ -61,12 +61,14 @@ public class Event {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Event event = (Event) o;
-        return size == event.size && start == event.start && end == event.end && Objects.equals(name, event.name);
+
+        return name.equals(event.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(size, start, end, name);
+        return name.hashCode();
     }
 }

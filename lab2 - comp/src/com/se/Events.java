@@ -54,16 +54,16 @@ public class Events {
     }
 
     @Override
-    /*public String toString() {
+    public String toString() {
 
-        if(checkEquals()==1)
+        //if(checkEquals()==1)
             return name + "(" +
                 "size=" + size +
                 ", start=" + start +
                 ", end=" + end +
                 ')';
-        else return "Nu poti adauga acelasi eveniment de 2 ori!";
-    }*/
+        //else return "Nu poti adauga acelasi eveniment de 2 ori!";
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -11,16 +11,18 @@ public abstract class Node implements Comparable<Node>{
         this.name = name;
     }
 
+
     public void setCost(Map<Node, Integer> cost) {
         this.cost = cost;
     }
 
     @Override
     public String toString() {
-        return "Node{" +
-                "name='" + name + '\'' +
-                ", cost=" + cost +
-                '}';
+        return "I have found the node with the name: "+ name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override

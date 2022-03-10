@@ -10,6 +10,14 @@ public class Router extends Node implements Identifiable{
         this.mac=MAC;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setMac(String mac) {
+        this.mac = mac;
+    }
+
     @Override
     public String getAddress() {
         return address;

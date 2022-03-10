@@ -15,6 +15,10 @@ public class Computer extends Node implements Identifiable, Storage {
         return address;
     }
 
+    public void setStorageCapacity(int storageCapacity) {
+        this.storageCapacity = storageCapacity;
+    }
+
     public void setAddress(String address) {
         this.address = address;
     }

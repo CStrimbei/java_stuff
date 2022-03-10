@@ -1,6 +1,16 @@
 package com.se;
 
+/**
+ * The LectureHall class, that inherits the Room class, and describes a Lecture Hall.
+ */
+
 public class LectureHall extends Room{
+    /**
+     * This is a constructor for the LectureHall class.
+     * @param CAP This is the capacity of the Lecture Hall.
+     * @param NAME This is the name of the Lecture Hall.
+     * @param PROJECTOR This tells you if the Lecture Hall is equipped with a Projector.
+     */
     public LectureHall(int CAP, String NAME, int PROJECTOR){
         this.name=NAME;
         this.cap=CAP;
@@ -31,6 +41,11 @@ public class LectureHall extends Room{
         this.type = type;
     }
 
+
+    /**
+     * The new, overwritten toString method.
+     * @return Prints an instance of the LectureHall class.
+     */
     @Override
     public String toString() {
 

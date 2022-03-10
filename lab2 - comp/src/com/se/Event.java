@@ -2,11 +2,23 @@ package com.se;
 
 import java.util.Objects;
 
+/**
+ * The Event class.
+ */
+
 public class Event {
     public int size;
     public int start;
     public int end;
     public String name;
+
+    /**
+     * The constructor for the Event class.
+     * @param SIZE The participant size of the event.
+     * @param START The starting time of the event.
+     * @param END The end time of the event.
+     * @param NAME The name of the room in which the event is held.
+     */
     public Event(int SIZE, int START, int END, String NAME) {
         this.size=SIZE;
         this.start=START;
@@ -46,7 +58,10 @@ public class Event {
         this.start = start;
     }
 
-
+    /**
+     * The new, overwritten toString method.
+     * @return Prints an instance of the Event class.
+     */
     @Override
     public String toString() {
 
@@ -56,6 +71,12 @@ public class Event {
                 ", end=" + end +
                 ')';
     }
+
+    /**
+     * The new, overwritten equals method.
+     * @param o The transmitted object.
+     * @return Returns true or false, depending on if the objects compared are equal.
+     */
 
     @Override
     public boolean equals(Object o) {

@@ -1,12 +1,18 @@
 package com.se;
 
+/**
+ * The Main class.
+ */
+
 public class Main {
+
+    /**
+     * The main class, where Events and Rooms are added, and methods are called.
+     * @param args
+     */
 
     public static void main(String[] args) {
         Problem method = new Problem();
-
-
-
         method.addEvent(new Event(100, 8, 10, "C1"));
         method.addEvent(new Event(100, 8, 10, "C1"));
         method.addEvent(new Event(100, 10, 12, "C2"));
@@ -20,8 +26,6 @@ public class Main {
         method.addRoom(new Lab(30, "405", OSType.Linux));
         method.addRoom(new LectureHall(30, "402",1));
         method.addRoom(new LectureHall(30, "404",0));
-
-
         method.runProblem();
     }
 }

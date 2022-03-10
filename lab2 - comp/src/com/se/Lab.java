@@ -1,6 +1,15 @@
 package com.se;
 
+/**
+ * The Lab class, which inherits the Room class, and describes a Laboratory.
+ */
 public class Lab extends Room {
+    /**
+     *
+     * @param CAP This is the capacity of the Laboratory.
+     * @param NAME This is the name of the Laboratory.
+     * @param OS This tells you what OS the computers in the Lecture Hall have.
+     */
     public Lab(int CAP, String NAME, OSType OS){
         this.name=NAME;
         this.cap=CAP;
@@ -30,6 +39,11 @@ public class Lab extends Room {
     public void setType(String type) {
         this.type = type;
     }
+
+    /**
+     * The new, overwritten toString method.
+     * @return Prints an instance of the Lab class.
+     */
 
     @Override
     public String toString() {

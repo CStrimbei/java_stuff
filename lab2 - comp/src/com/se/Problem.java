@@ -19,10 +19,8 @@ public class Problem {
      * @param room The instance.
      */
     public void addRoom(Room room){
-        for (Room r:rooms) {
-            if(r.equals(room))
-                return;
-        }
+        if(rooms.contains(room))
+            return;
         rooms.add(room);
     }
 
@@ -33,10 +31,8 @@ public class Problem {
      */
 
     public void addEvent(Event event){
-        for(Event e:events){
-            if(e.equals(event))
-                return;
-        }
+        if(events.contains(event))
+            return;
         events.add(event);
     }
 

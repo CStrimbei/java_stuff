@@ -3,7 +3,7 @@ package com.se;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProbInst {
+public class Problem {
 
     public void instProblem(){
         List<Event> event = new ArrayList<>();

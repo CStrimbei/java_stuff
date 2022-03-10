@@ -2,12 +2,12 @@ package com.se;
 
 import java.util.Objects;
 
-public class Events {
+public class Event {
     public int size;
     public int start;
     public int end;
     public String name;
-    public Events(int SIZE, int START, int END, String NAME) {
+    public Event(int SIZE, int START, int END, String NAME) {
         this.size=SIZE;
         this.start=START;
         this.end=END;
@@ -46,31 +46,23 @@ public class Events {
         this.start = start;
     }
 
-    public int checkEquals(){
-        if(equals(name)==true){
-            return 0;
-        }
-        return 1;
-    }
 
     @Override
     public String toString() {
 
-        //if(checkEquals()==1)
             return name + "(" +
                 "size=" + size +
                 ", start=" + start +
                 ", end=" + end +
                 ')';
-        //else return "Nu poti adauga acelasi eveniment de 2 ori!";
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Events events = (Events) o;
-        return size == events.size && start == events.start && end == events.end && Objects.equals(name, events.name);
+        Event event = (Event) o;
+        return size == event.size && start == event.start && end == event.end && Objects.equals(name, event.name);
     }
 
     @Override

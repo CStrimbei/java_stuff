@@ -2,11 +2,11 @@ package com.se;
 
 import java.util.Objects;
 
-public class Rooms {
+public class Room {
     public int cap;
     public String name;
     public Types type;
-    public Rooms(int CAP, Types TYPE, String NAME) {
+    public Room(int CAP, Types TYPE, String NAME) {
         this.cap=CAP;
         this.type=TYPE;
         this.name=NAME;
@@ -49,8 +49,8 @@ public class Rooms {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Rooms rooms = (Rooms) o;
-        return cap == rooms.cap && Objects.equals(name, rooms.name) && type == rooms.type;
+        Room room = (Room) o;
+        return cap == room.cap && Objects.equals(name, room.name) && type == room.type;
     }
 
     @Override

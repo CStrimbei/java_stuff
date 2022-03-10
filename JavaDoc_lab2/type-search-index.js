@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.se","l":"Event"},{"p":"com.se","l":"Lab"},{"p":"com.se","l":"LectureHall"},{"p":"com.se","l":"Main"},{"p":"com.se","l":"OSType"},{"p":"com.se","l":"Problem"},{"p":"com.se","l":"Room"},{"p":"com.se","l":"Solution"},{"p":"com.se","l":"Types"}];updateSearchResults();

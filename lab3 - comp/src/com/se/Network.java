@@ -9,10 +9,6 @@ public class Network {
     List<Node> nodeList= new ArrayList<>();
     Map<String, Integer> costs = new HashMap<String, Integer>();
 
-    public void addNode(Node node){
-        nodeList.add(node);
-    }
-
     public void addEdge(Node node1, Node node2, int COST){
         String Edge = node1 + " -> " + node2;
         costs.put(Edge, COST);

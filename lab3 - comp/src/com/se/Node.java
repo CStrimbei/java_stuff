@@ -5,20 +5,14 @@ import java.util.Map;
 
 public abstract class Node implements Comparable<Node>{
     private String name;
-    private Map<Node, Integer> cost = new HashMap<>();
 
     public void setName(String name) {
         this.name = name;
     }
 
-
-    public void setCost(Map<Node, Integer> cost) {
-        this.cost = cost;
-    }
-
     @Override
     public String toString() {
-        return "I have found the node with the name: "+ name;
+        return name;
     }
 
     public String getName() {

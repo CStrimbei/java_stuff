@@ -1,6 +1,4 @@
 package com.se;
-
-
 /**
  * The Main class.
  */

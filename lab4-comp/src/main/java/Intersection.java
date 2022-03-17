@@ -6,4 +6,11 @@ public class Intersection {
     public Intersection(String NAME) {
             this.name=NAME;
     }
+
+    @Override
+    public String toString() {
+        return "Intersection{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

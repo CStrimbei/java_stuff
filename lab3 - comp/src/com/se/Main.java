@@ -24,7 +24,19 @@ public class Main {
         System.out.println("The following nodes are in the system: ");
 
         for (Node node:n.nodeList) {
-            System.out.println(node);
+            System.out.print(node);
+            if(n.isIdentifiablePC(node)){
+                System.out.print(" and it's identifiable by the address ");
+                System.out.print(((Computer)node).getAddress());
+                System.out.println();
+            }
+            else if (n.isIdentifiableRouter(node)){
+                System.out.print(" and it's identifiable by the address ");
+                System.out.print(((Router)node).getAddress());
+                System.out.println();
+            }
+            else System.out.println();
+
         }
 
         System.out.println("And these are the costs: ");

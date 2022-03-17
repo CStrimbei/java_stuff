@@ -32,6 +32,13 @@ public class Network {
                 '}';
     }
 
+    public boolean isIdentifiablePC(Node node){
+        return node instanceof Computer;
+    }
+
+    public boolean isIdentifiableRouter(Node node){
+        return node instanceof Router;
+    }
 
     /*    @Override
     public String toString() {

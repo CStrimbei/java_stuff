@@ -1,6 +1,15 @@
 package com.se;
 
+
+/**
+ * The Main class.
+ */
 public class Main {
+
+    /**
+     * The main function.
+     * @param args
+     */
 
     public static void main(String[] args) {
 	Network n = new Network();

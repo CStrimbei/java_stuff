@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.se","l":"Computer"},{"p":"com.se","l":"Identifiable"},{"p":"com.se","l":"Main"},{"p":"com.se","l":"Network"},{"p":"com.se","l":"Node"},{"p":"com.se","l":"Router"},{"p":"com.se","l":"Storage"},{"p":"com.se","l":"Switch"}];updateSearchResults();

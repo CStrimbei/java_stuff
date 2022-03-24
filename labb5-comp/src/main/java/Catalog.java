@@ -1,9 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Catalog extends Item implements Serializable{
+public class Catalog implements Serializable{
     private String name;
     private List<Item> items = new ArrayList<>();
+
+    public Catalog(String NAME){
+        this.name = NAME;
+    }
 
     public void add(Item item){
         items.add(item);
@@ -18,7 +22,10 @@ public class Catalog extends Item implements Serializable{
     }
 
     @Override
-    public void addDetails(String ID, String TITLE, String LOCATION) {
-
+    public String toString() {
+        return "Catalog{" + '\n' +
+                "name='" + name + '\'' +
+                ", items=" + items +
+                '}';
     }
 }

@@ -6,6 +6,7 @@ public abstract class Item implements Serializable {
     public String id;
     public String title;
     public String location;
+    public String type;
 
     private Map<String, Object> tags= new HashMap<String, Object>();
 
@@ -15,5 +16,16 @@ public abstract class Item implements Serializable {
 
     public String getId() {
         return id;
+    }
+
+    @Override
+    public String toString() {
+        return '\n' + "Item{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", location='" + location + '\'' +
+                ", type='" + type + '\'' +
+                ", tags=" + tags +
+                '}';
     }
 }

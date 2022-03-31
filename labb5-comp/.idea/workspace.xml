@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6aae19b3-b228-4217-b370-4bd8adc3cc4e" name="Changes" comment="Updates">
-      <change afterPath="$PROJECT_DIR$/catalog.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catalog1.json" afterDir="false" />
+    <list default="true" id="6aae19b3-b228-4217-b370-4bd8adc3cc4e" name="Changes" comment="Compulsory done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Book.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Catalog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Catalog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Magazine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Catalog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Compulsory/Catalog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Compulsory/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Compulsory/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Serializable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Compulsory/Serializable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +58,7 @@
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Main" />
+      <option name="MAIN_CLASS_NAME" value="Compulsory.Main" />
       <module name="labb5-comp" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -82,7 +79,7 @@
       <option name="presentableId" value="Default" />
       <updated>1648140956738</updated>
       <workItem from="1648140958054" duration="2719000" />
-      <workItem from="1648720369474" duration="2872000" />
+      <workItem from="1648720369474" duration="3953000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1648141423451</created>
@@ -98,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648142446379</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Compulsory done">
+      <created>1648723340631</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1648723340631</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,6 +123,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First commit" />
     <MESSAGE value="Updates" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates" />
+    <MESSAGE value="Compulsory done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Compulsory done" />
   </component>
 </project>

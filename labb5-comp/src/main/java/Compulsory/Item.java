@@ -1,3 +1,5 @@
+package Compulsory;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +68,7 @@ public class Item{
 
     @Override
     public String toString() {
-        return "Item{" +
+        return "Compulsory.Item{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", location='" + location + '\'' +

@@ -12,10 +12,11 @@ public class Player {
     }
 
     private boolean submitWord() {
-        List<Tile> extracted = game.getBag().extractTiles(7);
+        List<Tile> extracted = (List<Tile>) game.getBag();
         if (extracted.isEmpty()) {
             return false;
         }
+        return true;
     }
 
     public String getName() {

@@ -1,28 +1,40 @@
 package compulsory;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Database {
-    public static final String URL="jdbc:postgresql://localhost:5432/countries";
-    private static final String USER="postgres";
-    private static final String PASSWORD="";
-    private static Connection connection = null;
+        private static final String URL = "jdbc:postgresql://localhost:5432/postgres";
+        private static final String USER = "postgres";
+        private static final String PASSWORD = "claudiu001";
+        private static Connection connection = null;
 
-    private Database(){}
+        Database() {}
 
-    public static Connection getConnection(){
-        return null;
-    }
-
-    public static void createConnection(){
-        try{
-            connection = null;
-            connection.setAutoCommit(false);
-        } catch (SQLException e){
-            System.err.println(e);
+        public static Connection getConnection() throws SQLException {
+            createConnection();
+            return connection;
         }
-    }
-    public static void closeConnection(){
-    }
+
+        public void testQuery(String query) throws SQLException {
+            Statement statement = connection.createStatement();
+            ResultSet queryRes = statement.executeQuery(query);
+
+            while (queryRes.next()){
+                String countryNames = queryRes.getString("country");
+                System.out.println(countryNames+ "\n");
+            }
+        }
+
+        private static void createConnection(){
+            try{
+                connection = DriverManager.getConnection(URL, USER, PASSWORD);
+                connection.setAutoCommit(false);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public static void closeConnection() throws SQLException {
+            connection.close();
+        }
 }

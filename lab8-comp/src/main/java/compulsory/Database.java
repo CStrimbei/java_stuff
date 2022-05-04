@@ -11,11 +11,17 @@ public class Database {
         Database() {}
 
         public static Connection getConnection() throws SQLException {
-            createConnection();
+            if(connection==null){
+                createConnection();
+            }
             return connection;
         }
 
-        public void testQuery(String query) throws SQLException {
+    public static void rollback() throws SQLException {
+            connection.rollback();
+    }
+
+    public void testQuery(String query) throws SQLException {
             Statement statement = connection.createStatement();
             ResultSet queryRes = statement.executeQuery(query);
 
@@ -35,6 +41,7 @@ public class Database {
         }
 
         public static void closeConnection() throws SQLException {
-            connection.close();
+            if(connection!=null&&!connection.isClosed())
+                connection.close();
         }
 }

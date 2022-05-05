@@ -1,8 +1,7 @@
-package compulsory.DAO;
+package compulsory_and_homework.DAO;
 
-import compulsory.Database;
-import compulsory.model.Continent;
-import compulsory.model.Country;
+import compulsory_and_homework.Database;
+import compulsory_and_homework.model.Continent;
 
 import java.sql.*;
 import java.util.ArrayList;

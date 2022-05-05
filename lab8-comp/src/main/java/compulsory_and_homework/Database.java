@@ -1,4 +1,4 @@
-package compulsory;
+package compulsory_and_homework;
 
 import java.sql.*;
 

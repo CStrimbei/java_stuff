@@ -1,8 +1,7 @@
-package compulsory.DAO;
+package compulsory_and_homework.DAO;
 
-import compulsory.Database;
-import compulsory.model.Continent;
-import compulsory.model.Country;
+import compulsory_and_homework.Database;
+import compulsory_and_homework.model.Country;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +18,7 @@ public class CountryDAO {
         )){
             pstmt.setInt(1, country.getId());
             pstmt.setString(2, country.getName());
-            pstmt.setInt(3, country.getCode());
+            pstmt.setString(3, country.getCode());
             pstmt.setString(4, country.getContinent());
             pstmt.executeUpdate();
         } catch (SQLException e){
@@ -33,7 +32,7 @@ public class CountryDAO {
         statement.setString(1, name);
         ResultSet queryRes = statement.executeQuery();
         while (queryRes.next()){
-            return new Country(queryRes.getInt("id"), queryRes.getString("name"), queryRes.getInt("code"), queryRes.getString("continent"));
+            return new Country(queryRes.getInt("id"), queryRes.getString("name"), queryRes.getString("code"), queryRes.getString("continent"));
             //System.out.println(idMax+ "\n");
         }
         return null;
@@ -44,7 +43,7 @@ public class CountryDAO {
         statement.setInt(1, ID);
         ResultSet queryRes = statement.executeQuery();
         while (queryRes.next()){
-            return new Country(queryRes.getInt("id"), queryRes.getString("name"), queryRes.getInt("code"), queryRes.getString("continent"));
+            return new Country(queryRes.getInt("id"), queryRes.getString("name"), queryRes.getString("code"), queryRes.getString("continent"));
             //System.out.println(idMax+ "\n");
         }
         return null;
@@ -56,7 +55,7 @@ public class CountryDAO {
         ResultSet queryRes = statement.executeQuery();
         List<Country> allCountries = new ArrayList<Country>();
         while (queryRes.next()){
-            Country temp = new Country(queryRes.getInt("id"), queryRes.getString("name"), queryRes.getInt("code"), queryRes.getString("continent"));
+            Country temp = new Country(queryRes.getInt("id"), queryRes.getString("name"), queryRes.getString("code"), queryRes.getString("continent"));
             allCountries.add(temp);
             //System.out.println(idMax+ "\n");
         }

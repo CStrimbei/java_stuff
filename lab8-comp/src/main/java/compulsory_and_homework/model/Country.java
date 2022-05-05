@@ -1,12 +1,12 @@
-package compulsory.model;
+package compulsory_and_homework.model;
 
 public class Country {
     private Integer id;
     private String name;
-    private Integer code;
+    private String code;
     private String continent;
 
-    public Country(Integer id, String name, Integer code, String continent) {
+    public Country(Integer id, String name, String code, String continent) {
         this.id = id;
         this.name = name;
         this.code = code;
@@ -29,11 +29,11 @@ public class Country {
         this.name = name;
     }
 
-    public Integer getCode() {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(String code) {
         this.code = code;
     }
 

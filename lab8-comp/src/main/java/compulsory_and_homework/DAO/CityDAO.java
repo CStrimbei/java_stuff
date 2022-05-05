@@ -1,8 +1,7 @@
-package compulsory.DAO;
+package compulsory_and_homework.DAO;
 
-import compulsory.Database;
-import compulsory.model.City;
-import compulsory.model.Country;
+import compulsory_and_homework.Database;
+import compulsory_and_homework.model.City;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +14,7 @@ public class CityDAO {
     public void create(City city) throws SQLException {
         Connection con = Database.getConnection();
         try (PreparedStatement pstmt = con.prepareStatement(
-                "insert into countries (id, country, name, capital, latitude, longitude) values (?, ?, ?, ?, ?, ?)"
+                "insert into cities (id, country, name, capital, latitude, longitude) values (?, ?, ?, ?, ?, ?)"
         )){
             pstmt.setInt(1, city.getId());
             pstmt.setString(2, city.getCountry());

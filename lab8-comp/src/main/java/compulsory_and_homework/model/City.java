@@ -1,4 +1,4 @@
-package compulsory.model;
+package compulsory_and_homework.model;
 
 public class City {
     Integer id;

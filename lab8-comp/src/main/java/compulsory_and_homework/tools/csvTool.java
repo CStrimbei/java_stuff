@@ -1,8 +1,9 @@
-package compulsory_and_homework;
+package compulsory_and_homework.tools;
 
 import compulsory_and_homework.DAO.CityDAO;
 import compulsory_and_homework.DAO.ContinentDAO;
 import compulsory_and_homework.DAO.CountryDAO;
+import compulsory_and_homework.Database;
 import compulsory_and_homework.model.City;
 import compulsory_and_homework.model.Continent;
 import compulsory_and_homework.model.Country;

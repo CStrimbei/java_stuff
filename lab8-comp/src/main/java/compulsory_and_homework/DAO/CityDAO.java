@@ -61,4 +61,26 @@ public class CityDAO {
         }
         return allCities;
     }
+    public Double returnLatitude(String name) throws SQLException{
+        Connection conn = Database.getConnection();
+        PreparedStatement statement = conn.prepareStatement("select latitude from cities where name=?");
+        statement.setString(1, name);
+        ResultSet queryRes = statement.executeQuery();
+        while (queryRes.next()){
+            return queryRes.getDouble("latitude");
+            //System.out.println(idMax+ "\n");
+        }
+        return null;
+    }
+    public Double returnLongitude(String name) throws SQLException{
+        Connection conn = Database.getConnection();
+        PreparedStatement statement = conn.prepareStatement("select longitude from cities where name=?");
+        statement.setString(1, name);
+        ResultSet queryRes = statement.executeQuery();
+        while (queryRes.next()){
+            return queryRes.getDouble("longitude");
+            //System.out.println(idMax+ "\n");
+        }
+        return null;
+    }
 }

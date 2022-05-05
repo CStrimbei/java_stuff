@@ -1,6 +1,6 @@
 package compulsory_and_homework.model;
 
-public class Country {
+public class Country extends Entity {
     private Integer id;
     private String name;
     private String code;

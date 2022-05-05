@@ -1,6 +1,6 @@
 package compulsory_and_homework.model;
 
-public class Continent {
+public class Continent extends Entity{
     private Integer ID;
     private String name;
 

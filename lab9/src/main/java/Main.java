@@ -17,6 +17,6 @@ public class Main {
         //cor.create("Romania", "RO", 2);
         //cor.findById(1);
         //cor.findByName("Romania");
-        EntityController.getInstance().getEntityManagerFactory().close();
+        EntityController.getInstance().closeEntityManagerFactory();
     }
 }

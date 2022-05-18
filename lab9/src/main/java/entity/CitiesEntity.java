@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "cities", schema = "public", catalog = "postgres")
 @NamedQuery(name = "city.findid", query = "select name from CitiesEntity where id = ?1")
 @NamedQuery(name = "city.findname", query = "select name from CitiesEntity where name = ?1")
-public class CitiesEntity {
+public class CitiesEntity extends AbstractEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")

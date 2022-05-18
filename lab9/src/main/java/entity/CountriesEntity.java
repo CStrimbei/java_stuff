@@ -1,9 +1,12 @@
 package entity;
 
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "countries", schema = "public", catalog = "postgres")
+@NamedQuery(name="count.findid", query = "select name from CountriesEntity where id = ?1")
+@NamedQuery(name="count.findname", query = "select name from CountriesEntity where name = ?1")
 public class CountriesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id

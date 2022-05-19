@@ -3,7 +3,8 @@ package entity;
 import javax.persistence.*;
 
 @Entity
-public class Continents {
+@Table(name = "continents", schema = "public", catalog = "postgres")
+public class ContinentsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -33,7 +34,7 @@ public class Continents {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Continents that = (Continents) o;
+        ContinentsEntity that = (ContinentsEntity) o;
 
         if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;

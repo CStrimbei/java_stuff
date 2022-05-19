@@ -3,14 +3,15 @@ package entity;
 import javax.persistence.*;
 
 @Entity
-public class Cities {
+@Table(name = "cities", schema = "public", catalog = "postgres")
+public class CitiesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
     private int id;
     @Basic
-    @Column(name = "country_id")
-    private Integer countryId;
+    @Column(name = "country")
+    private String country;
     @Basic
     @Column(name = "name")
     private String name;
@@ -32,12 +33,12 @@ public class Cities {
         this.id = id;
     }
 
-    public Integer getCountryId() {
-        return countryId;
+    public String getCountry() {
+        return country;
     }
 
-    public void setCountryId(Integer countryId) {
-        this.countryId = countryId;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public String getName() {
@@ -77,14 +78,14 @@ public class Cities {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Cities cities = (Cities) o;
+        CitiesEntity that = (CitiesEntity) o;
 
-        if (id != cities.id) return false;
-        if (countryId != null ? !countryId.equals(cities.countryId) : cities.countryId != null) return false;
-        if (name != null ? !name.equals(cities.name) : cities.name != null) return false;
-        if (hascapital != null ? !hascapital.equals(cities.hascapital) : cities.hascapital != null) return false;
-        if (latitude != null ? !latitude.equals(cities.latitude) : cities.latitude != null) return false;
-        if (longitude != null ? !longitude.equals(cities.longitude) : cities.longitude != null) return false;
+        if (id != that.id) return false;
+        if (country != null ? !country.equals(that.country) : that.country != null) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (hascapital != null ? !hascapital.equals(that.hascapital) : that.hascapital != null) return false;
+        if (latitude != null ? !latitude.equals(that.latitude) : that.latitude != null) return false;
+        if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) return false;
 
         return true;
     }
@@ -92,7 +93,7 @@ public class Cities {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (countryId != null ? countryId.hashCode() : 0);
+        result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (hascapital != null ? hascapital.hashCode() : 0);
         result = 31 * result + (latitude != null ? latitude.hashCode() : 0);

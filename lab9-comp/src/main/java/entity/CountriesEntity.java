@@ -3,7 +3,8 @@ package entity;
 import javax.persistence.*;
 
 @Entity
-public class Countries {
+@Table(name = "countries", schema = "public", catalog = "postgres")
+public class CountriesEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -15,8 +16,8 @@ public class Countries {
     @Column(name = "code")
     private String code;
     @Basic
-    @Column(name = "continent_id")
-    private Integer continentId;
+    @Column(name = "continent")
+    private String continent;
 
     public int getId() {
         return id;
@@ -42,12 +43,12 @@ public class Countries {
         this.code = code;
     }
 
-    public Integer getContinentId() {
-        return continentId;
+    public String getContinent() {
+        return continent;
     }
 
-    public void setContinentId(Integer continentId) {
-        this.continentId = continentId;
+    public void setContinent(String continent) {
+        this.continent = continent;
     }
 
     @Override
@@ -55,13 +56,12 @@ public class Countries {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Countries countries = (Countries) o;
+        CountriesEntity that = (CountriesEntity) o;
 
-        if (id != countries.id) return false;
-        if (name != null ? !name.equals(countries.name) : countries.name != null) return false;
-        if (code != null ? !code.equals(countries.code) : countries.code != null) return false;
-        if (continentId != null ? !continentId.equals(countries.continentId) : countries.continentId != null)
-            return false;
+        if (id != that.id) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (code != null ? !code.equals(that.code) : that.code != null) return false;
+        if (continent != null ? !continent.equals(that.continent) : that.continent != null) return false;
 
         return true;
     }
@@ -71,7 +71,7 @@ public class Countries {
         int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (code != null ? code.hashCode() : 0);
-        result = 31 * result + (continentId != null ? continentId.hashCode() : 0);
+        result = 31 * result + (continent != null ? continent.hashCode() : 0);
         return result;
     }
 }

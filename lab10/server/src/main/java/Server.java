@@ -1,63 +1,50 @@
-import java.io.IOException;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-public class Server implements Runnable{
+public class Server {
 
-    private ArrayList<ConnectionHandler> connections;
-    private ServerSocket server;
-    private Boolean done;
-    private ExecutorService pool;
-    public Server(){
-        connections = new ArrayList<>();
-        done = false;
+    private final ServerSocket serverSocket;
+
+    public Server(ServerSocket serverSocket) {
+        this.serverSocket = serverSocket;
     }
 
-    @Override
-    public void run(){
+    public void startServer() {
         try {
-            server = new ServerSocket(5000);
-            pool = Executors.newCachedThreadPool();
-            while(!done){
-                Socket client = server.accept();
-                ConnectionHandler handler = new ConnectionHandler(client);
-                connections.add(handler);
-                pool.execute(handler);
+            // Listen for connections (clients to connect) on port 1234.
+            while (!serverSocket.isClosed()) {
+                // Will be closed in the Client Handler.
+                Socket socket = serverSocket.accept();
+                System.out.println("A new client has connected!");
+                ClientHandler clientHandler = new ClientHandler(socket);
+                Thread thread = new Thread(clientHandler);
+                // The start method begins the execution of a thread.
+                // When you call start() the run method is called.
+                // The operating system schedules the threads.
+                thread.start();
             }
-
-        } catch (Exception e) {
-            shutdown();
+        } catch (IOException e) {
+            closeServerSocket();
         }
     }
 
-    public void shutdown(){
-        try{
-            done = true;
-            if(!server.isClosed()){
-                server.close();
+    // Close the server socket gracefully.
+    public void closeServerSocket() {
+        try {
+            if (serverSocket != null) {
+                serverSocket.close();
             }
-            for(ConnectionHandler o : connections){
-                o.shutdownClient();
-            }
-        } catch (IOException e){
-            // ignore
-        }
-
-    }
-
-    public void broadcast(String message){
-        for(ConnectionHandler o : connections){
-            if(o != null){
-                o.sendMessage(message);
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
-    public static void main(String[] args) {
-        Server server = new Server();
-        server.run();
+
+    // Run the program.
+    public static void main(String[] args) throws IOException {
+        ServerSocket serverSocket = new ServerSocket(1234);
+        Server server = new Server(serverSocket);
+        server.startServer();
     }
 
 }

@@ -1,50 +1,144 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class Server {
+public class Server implements Runnable {
 
-    private final ServerSocket serverSocket;
+    private ArrayList<ConnectionHandler> connections;
+    private ServerSocket server;
+    private Boolean done;
 
-    public Server(ServerSocket serverSocket) {
-        this.serverSocket = serverSocket;
+    private ExecutorService threadPool;
+
+    public Server() {
+        connections = new ArrayList<>();
+        done = false;
     }
 
-    public void startServer() {
+    @Override
+    public void run() {
         try {
-            // Listen for connections (clients to connect) on port 1234.
-            while (!serverSocket.isClosed()) {
-                // Will be closed in the Client Handler.
-                Socket socket = serverSocket.accept();
-                System.out.println("A new client has connected!");
-                ClientHandler clientHandler = new ClientHandler(socket);
-                Thread thread = new Thread(clientHandler);
-                // The start method begins the execution of a thread.
-                // When you call start() the run method is called.
-                // The operating system schedules the threads.
-                thread.start();
+            server = new ServerSocket(5000);
+            threadPool = Executors.newCachedThreadPool();
+            while (!done) {
+                Socket client = server.accept();
+                ConnectionHandler handler = new ConnectionHandler(client);
+                connections.add(handler);
+                threadPool.execute(handler);
             }
-        } catch (IOException e) {
-            closeServerSocket();
+        } catch (Exception e) {
+            shutdown();
         }
     }
 
-    // Close the server socket gracefully.
-    public void closeServerSocket() {
-        try {
-            if (serverSocket != null) {
-                serverSocket.close();
+    public void broadcast(String mesaj) {
+        for (ConnectionHandler o : connections) {
+            if (o != null) {
+                o.sendMessage(mesaj);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 
-    // Run the program.
-    public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(1234);
-        Server server = new Server(serverSocket);
-        server.startServer();
+    public void shutdown() {
+        try {
+            done = true;
+            if (!server.isClosed()) {
+                server.close();
+            }
+            for (ConnectionHandler o : connections) {
+                o.shutdown();
+            }
+        } catch (IOException e) {
+            // ignore
+        }
+
+    }
+
+    class ConnectionHandler implements Runnable {
+
+
+        private Socket client;
+        private BufferedReader in;
+        private PrintWriter out;
+        private String nick;
+
+        public ConnectionHandler(Socket client) {
+            this.client = client;
+        }
+
+        @Override
+        public void run() {
+            try {
+                out = new PrintWriter(client.getOutputStream(), true);
+                in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+                out.println("Inregistreaza un nickname folosind /register!");
+                nick = in.readLine();
+                if (nick.startsWith("/register ")) {
+                    String[] mesajSplit = nick.split(" ", 2);
+                    if(mesajSplit.length == 2){
+                        nick = mesajSplit[1];
+                    } else if(nick.startsWith("/quit")){
+                        broadcast(nick + " a iesit din chat!");
+                        shutdown();
+                    } else {
+                        out.println("Nu ai oferit un nickname valid!");
+                    }
+
+                }
+                System.out.println(nick + " s-a conectat!");
+                broadcast(nick + " s-a alaturat chatului!");
+                String mesaj = null;
+                while ((mesaj = in.readLine()) != null) {
+                    if (mesaj.startsWith("/register ")) {
+                        String[] mesajSplit = mesaj.split(" ", 2);
+                        if (mesajSplit.length == 2) {
+                            broadcast(nick + " si-a pus nicknameul " + mesajSplit[1]);
+                            System.out.println(nick + " si-a pus nicknameul " + mesajSplit[1]);
+                            nick = mesajSplit[1];
+                            out.println("Ti-ai pus nicknameul " + nick + "!");
+                        } else {
+                            out.println("Nu ai oferit un nickname valid!");
+                        }
+                    } else if (mesaj.startsWith("/quit")) {
+                        broadcast(nick + " a iesit din chat!");
+                        shutdown();
+                    } else {
+                        broadcast(nick + " : " + mesaj);
+                    }
+                }
+            } catch (IOException e) {
+                shutdown();
+            }
+        }
+
+        public void shutdown() {
+            try {
+                in.close();
+                out.close();
+                if (!client.isClosed()) {
+                    client.close();
+                }
+            } catch (IOException e) {
+                // ignore
+            }
+
+        }
+
+        public void sendMessage(String mesaj) {
+            out.println(mesaj);
+        }
+    }
+
+    public static void main(String[] args) {
+        Server server = new Server();
+        server.run();
     }
 
 }
+

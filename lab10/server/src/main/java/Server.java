@@ -77,20 +77,8 @@ public class Server implements Runnable {
             try {
                 out = new PrintWriter(client.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-                out.println("Inregistreaza un nickname folosind /register!");
+                out.println("Scrie-ti nicknameul! De asemenea, vei putea folosi /register pentru a il reinregistra ulterior!");
                 nick = in.readLine();
-                if (nick.startsWith("/register ")) {
-                    String[] mesajSplit = nick.split(" ", 2);
-                    if(mesajSplit.length == 2){
-                        nick = mesajSplit[1];
-                    } else if(nick.startsWith("/quit")){
-                        broadcast(nick + " a iesit din chat!");
-                        shutdown();
-                    } else {
-                        out.println("Nu ai oferit un nickname valid!");
-                    }
-
-                }
                 System.out.println(nick + " s-a conectat!");
                 broadcast(nick + " s-a alaturat chatului!");
                 String mesaj = null;

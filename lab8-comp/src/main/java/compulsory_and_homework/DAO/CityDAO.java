@@ -13,9 +13,7 @@ import java.util.List;
 public class CityDAO {
     public void create(City city) throws SQLException {
         Connection con = Database.getConnection();
-        try (PreparedStatement pstmt = con.prepareStatement(
-                "insert into cities (id, country, name, capital, latitude, longitude) values (?, ?, ?, ?, ?, ?)"
-        )){
+        try (PreparedStatement pstmt = con.prepareStatement("insert into cities (id, country, name, capital, latitude, longitude) values (?, ?, ?, ?, ?, ?)")){
             pstmt.setInt(1, city.getId());
             pstmt.setString(2, city.getCountry());
             pstmt.setString(3, city.getName());

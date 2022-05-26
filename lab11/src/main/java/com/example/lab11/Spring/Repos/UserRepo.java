@@ -1,6 +1,7 @@
 package com.example.lab11.Spring.Repos;
 
 import com.example.lab11.Entities.UserEntity;
+import com.example.lab11.Server.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

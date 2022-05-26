@@ -17,6 +17,9 @@ public class UserService {
     public UserEntity getName(String name){
         return userRepo.findName(name);
     }
+    public UserEntity getId(int id){
+        return userRepo.findId(id);
+    }
     public UserEntity getAllUsers(){
         return userRepo.findAllIds();
     }

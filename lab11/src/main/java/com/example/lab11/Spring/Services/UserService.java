@@ -26,4 +26,5 @@ public class UserService {
     public void deleteUser(UserEntity user){
         userRepo.delete(user);
     }
+
 }

@@ -29,8 +29,13 @@ public class ProjectWrapper {
     }
     @PutMapping("/updateUser")
     public ResponseEntity<Object> updateUser(@RequestParam String old_user, String new_user){
-
-        return null;
+        UserEntity userEntity;
+        userEntity = userService.getName(old_user);
+        if(userEntity!=null){
+            userEntity.setName(new_user);
+            userService.updateUser(userEntity);
+        } else return new ResponseEntity<>("Could not add user!", HttpStatus.I_AM_A_TEAPOT);
+        return new ResponseEntity<>("User updated successfully!", HttpStatus.OK);
     }
     @GetMapping("/getUser")
     public ResponseEntity<UserEntity> getUser(@RequestParam String name){

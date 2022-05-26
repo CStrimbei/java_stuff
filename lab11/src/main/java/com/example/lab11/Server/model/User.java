@@ -13,6 +13,8 @@ public class User {
         this.friends = new ArrayList<>();
         this.mesaje = new ArrayList<>();
     }
+
+
     //pt adaugat prieteni in lista
     public void friendAdd(User user){
         friends.add(user);

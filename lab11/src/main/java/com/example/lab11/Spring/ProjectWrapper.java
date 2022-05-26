@@ -33,7 +33,18 @@ public class ProjectWrapper {
         return null;
     }
     @GetMapping("/getUser")
-    public ResponseEntity<Object> getUser(@RequestParam String name){
-        
+    public ResponseEntity<UserEntity> getUser(@RequestParam String name){
+        return new ResponseEntity<UserEntity>(userService.getName(name), HttpStatus.OK);
+    }
+    @GetMapping("/getAllUsers")
+    public ResponseEntity<UserEntity> getUser(){
+        return new ResponseEntity<UserEntity>(userService.getAllUsers(), HttpStatus.OK);
+    }
+    @DeleteMapping("/deleteUser")
+    public void deleteUser(@RequestBody ClientObj client){
+        UserEntity user = new UserEntity();
+        user.setName(client.getUser());
+        user.setId(client.getId());
+        userService.deleteUser(user);
     }
 }

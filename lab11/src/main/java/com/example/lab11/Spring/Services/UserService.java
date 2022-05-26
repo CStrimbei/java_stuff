@@ -17,6 +17,9 @@ public class UserService {
     public UserEntity getName(String name){
         return userRepo.findName(name);
     }
+    public UserEntity getAllUsers(){
+        return userRepo.findAllIds();
+    }
     public void addUser(UserEntity user){
         userRepo.save(user);
     }

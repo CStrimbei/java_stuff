@@ -11,4 +11,6 @@ public interface UserRepo extends JpaRepository<UserEntity, Integer> {
     UserEntity findName(String name);
     @Query("select u from UserEntity u where u.id=?1")
     UserEntity findId(int id);
+    @Query("select u from UserEntity u")
+    UserEntity findAllIds();
 }

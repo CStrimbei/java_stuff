@@ -15,7 +15,7 @@ public class ParkingGarage {
         this.location = location;
         this.coordinates = coordinates;
         this.totalSpaces = totalSpaces;
-        this.occupiedSpaces = random.nextInt(totalSpaces);
+        this.occupiedSpaces = random.nextInt(totalSpaces+1);
         this.freeSpaces = totalSpaces - occupiedSpaces;
     }
 

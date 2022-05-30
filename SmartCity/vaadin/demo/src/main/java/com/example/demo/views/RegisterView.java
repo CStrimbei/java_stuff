@@ -3,6 +3,7 @@ package com.example.demo.views;
 
 import com.example.demo.repos.PersonRepo;
 import com.example.demo.entity.Person;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -56,14 +57,21 @@ public class RegisterView extends VerticalLayout {
                 binder.writeBean(person);
                 if(personRepo.findByUsername(person.getUsername())!=null){
                     layout.removeAll();
-                    layout.add(firstName, lastName, email, userType, username, password, registerButton);
+                    layout.add(firstName, lastName, email, userType, username, password);
                     layout.add("Username already exists!");
-                } else{
+                    layout.add(registerButton, loginButton);
+                } else if (person.getUsername()==""||person.getEmail()==""||person.getFirstname()==""||person.getLastname()==""||person.getPassword()==""||person.getUsertype()=="") {
+                    layout.removeAll();
+                    layout.add(firstName, lastName, email, userType, username, password);
+                    layout.add("You haven't entered all of the credentials!");
+                    layout.add(registerButton, loginButton);
+                }else{
                     layout.removeAll();
                     personRepo.saveAndFlush(person);
                     binder.readBean(new Person());
-                    layout.add(firstName, lastName, email, userType, username, password, registerButton);
+                    layout.add(firstName, lastName, email, userType, username, password);
                     layout.add("User added successfully!");
+                    layout.add(registerButton, loginButton);
                 }
             } catch (ValidationException e){
                 e.printStackTrace();

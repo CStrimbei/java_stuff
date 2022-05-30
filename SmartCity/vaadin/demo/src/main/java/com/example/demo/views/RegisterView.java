@@ -4,6 +4,7 @@ package com.example.demo.views;
 import com.example.demo.repos.PersonRepo;
 import com.example.demo.entity.Person;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
@@ -42,9 +43,11 @@ public class RegisterView extends VerticalLayout {
         var layout = new VerticalLayout();
         layout.setAlignItems(Alignment.CENTER);
         var registerButton = new Button("Register");
+        var loginButton = new Button("Login");
         registerButton.addClickShortcut(Key.ENTER);
         registerButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        layout.add(firstName, lastName, email, userType, username, password, registerButton);
+        loginButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
+        layout.add(firstName, lastName, email, userType, username, password, registerButton, loginButton);
         binder.bindInstanceFields(this);
 
         registerButton.addClickListener(click -> {
@@ -66,6 +69,8 @@ public class RegisterView extends VerticalLayout {
                 e.printStackTrace();
             }
         });
+
+        loginButton.addClickListener(event -> UI.getCurrent().navigate("/login"));
 
         return layout;
     }

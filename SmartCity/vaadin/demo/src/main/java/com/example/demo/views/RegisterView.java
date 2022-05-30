@@ -33,6 +33,7 @@ public class RegisterView extends VerticalLayout {
         var headerLayout = new VerticalLayout();
         headerLayout.setAlignItems(Alignment.CENTER);
         headerLayout.add(new H1("Welcome to my SmartCity app!"));
+        headerLayout.add("Enter your credentials below to register!");
         add(headerLayout);
         add(getForm());
     }

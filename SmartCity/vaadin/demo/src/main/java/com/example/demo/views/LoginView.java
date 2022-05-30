@@ -45,7 +45,10 @@ public class LoginView extends VerticalLayout {
         registerButton.addClickListener(event -> UI.getCurrent().navigate("/register"));
 
         loginButton.addClickListener(click -> {
+            layout.removeAll();
+            layout.add(username, password);
             layout.add("Work in progress!");
+            layout.add(loginButton ,registerButton);
         });
 
         return layout;

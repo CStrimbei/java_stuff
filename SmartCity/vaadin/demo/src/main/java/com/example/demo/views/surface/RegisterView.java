@@ -1,4 +1,4 @@
-package com.example.demo.views;
+package com.example.demo.views.surface;
 
 
 import com.example.demo.repos.PersonRepo;
@@ -58,7 +58,7 @@ public class RegisterView extends VerticalLayout {
                 if(personRepo.findByUsername(person.getUsername())!=null){
                     layout.removeAll();
                     layout.add(firstName, lastName, email, userType, username, password);
-                    layout.add("Username already exists!");
+                    layout.add("User already exists!");
                     layout.add(registerButton, loginButton);
                 } else if (person.getUsername()==""||person.getEmail()==""||person.getFirstname()==""||person.getLastname()==""||person.getPassword()==""||person.getUsertype()=="") {
                     layout.removeAll();

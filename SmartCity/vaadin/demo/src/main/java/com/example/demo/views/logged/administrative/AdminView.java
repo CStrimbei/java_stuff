@@ -1,4 +1,4 @@
-package com.example.demo.views.logged;
+package com.example.demo.views.logged.administrative;
 import com.example.demo.repos.PersonRepo;
 import com.example.demo.entity.Person;
 import com.vaadin.flow.component.Component;

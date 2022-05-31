@@ -3,7 +3,7 @@ package com.example.demo.views.surface;
 
 import com.example.demo.entity.Person;
 import com.example.demo.repos.PersonRepo;
-import com.example.demo.views.logged.AdminView;
+import com.example.demo.views.logged.administrative.AdminView;
 import com.example.demo.views.logged.LoggedHomepage;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;

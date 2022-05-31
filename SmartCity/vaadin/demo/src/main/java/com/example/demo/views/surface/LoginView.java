@@ -45,7 +45,7 @@ public class LoginView extends VerticalLayout {
         layout.setDescription("The app that helps find your way around the city!");
 
         layout.addLoginListener(event -> {
-            if(DigestUtils.sha1Hex(event.getPassword()).equals(personRepo.findPassword(event.getUsername()))){
+            if(event.getPassword().equals(personRepo.findPassword(event.getUsername()))){
                 layout.close();
                 UI.getCurrent().navigate(LoggedHomepage.class);
             } else{

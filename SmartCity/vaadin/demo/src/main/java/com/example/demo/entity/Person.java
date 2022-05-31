@@ -1,5 +1,8 @@
 package com.example.demo.entity;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.RandomStringUtils;
+
 import javax.persistence.*;
 
 @Entity
@@ -28,6 +31,15 @@ public class Person {
 
     @Column(name = "usertype", length = 10)
     private String usertype;
+
+
+/*
+    public Person(String username, String password, String usertype){
+        this.username=username;
+        this.usertype=usertype;
+        this.password = DigestUtils.sha1Hex(password);
+    }
+*/
 
     public Integer getId() {
         return id;

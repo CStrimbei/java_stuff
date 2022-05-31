@@ -6,9 +6,9 @@ import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-
-@Route("/loggedhome")
+@PageTitle("SmartCity")
 public class LoggedHomepage extends VerticalLayout{
 
     private static final String tempval = "temp";

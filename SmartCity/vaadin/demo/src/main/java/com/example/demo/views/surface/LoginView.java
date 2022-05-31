@@ -3,6 +3,7 @@ package com.example.demo.views.surface;
 
 import com.example.demo.repos.PersonRepo;
 import com.example.demo.entity.Person;
+import com.example.demo.views.logged.LoggedHomepage;
 import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
@@ -17,11 +18,14 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
 @Route("/login")
+@PageTitle("Login")
 public class LoginView extends VerticalLayout {
     private PersonRepo personRepo;
     private TextField username = new TextField("Username");
@@ -38,12 +42,12 @@ public class LoginView extends VerticalLayout {
     private LoginOverlay getLoginForm() {
         var layout = new LoginOverlay();
         layout.setTitle("SmartCity");
-        layout.setDescription("The app that helps you move around the city!");
+        layout.setDescription("The app that helps find your way around the city!");
 
         layout.addLoginListener(event -> {
-            if(event.getPassword().equals(personRepo.findPassword(event.getUsername()))){
+            if(DigestUtils.sha1Hex(event.getPassword()).equals(personRepo.findPassword(event.getUsername()))){
                 layout.close();
-                UI.getCurrent().navigate("/loggedhome");
+                UI.getCurrent().navigate(LoggedHomepage.class);
             } else{
                 Notification.show("Wrong username or password!");
                 layout.setOpened(true);

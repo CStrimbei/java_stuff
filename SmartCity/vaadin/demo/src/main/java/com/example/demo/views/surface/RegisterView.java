@@ -17,9 +17,11 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 @Route("/register")
+@PageTitle("Register")
 public class RegisterView extends VerticalLayout {
     private PersonRepo personRepo;
     private TextField firstName = new TextField("First name");

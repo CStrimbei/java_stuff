@@ -2,7 +2,6 @@ package com.example.demo.views.surface;
 
 
 import com.example.demo.entity.Person;
-import com.example.demo.features.parking.ParkingGarageManager;
 import com.example.demo.repos.PersonRepo;
 import com.example.demo.views.logged.administrative.AdminView;
 import com.example.demo.views.logged.LoggedHomepage;
@@ -17,9 +16,9 @@ import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.QueryParameters;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteConfiguration;
-import com.vaadin.flow.server.VaadinSession;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,11 +74,9 @@ public class LoginView extends VerticalLayout {
         Person person = personRepo.findByUsername(username);
         if(person!=null && person.getPassword().equals(personRepo.findPassword(username))){
             createRoutes(person.getUsertype());
-            VaadinSession.getCurrent().getSession().setAttribute("username", username);
-            ParkingGarageManager parkingGarageManager;
             if(!person.getUsertype().equals("Admin")){
-                UI.getCurrent().navigate("logged");
-            } else UI.getCurrent().navigate("adminpanel");
+                UI.getCurrent().navigate("logged/" + username, QueryParameters.fromString(username));
+            } else UI.getCurrent().navigate("adminpanel/" + username, QueryParameters.fromString(username));
 
         } else{
             Notification.show("Wrong credentials!");
@@ -98,10 +95,10 @@ public class LoginView extends VerticalLayout {
         var authRoutes = new ArrayList<AuthRoute>();
         authRoutes.clear();
         if(!usertype.equals("Admin")){
-            authRoutes.add(new AuthRoute("logged", "LoggedHome", LoggedHomepage.class));
+            authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
         } else {
-            authRoutes.add(new AuthRoute("logged", "LoggedHome", LoggedHomepage.class));
-            authRoutes.add(new AuthRoute("adminpanel", "AdminPanel", AdminView.class));
+            authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
+            authRoutes.add(new AuthRoute("adminpanel/", "AdminPanel", AdminView.class));
         }
         System.out.println(authRoutes);
         return authRoutes;

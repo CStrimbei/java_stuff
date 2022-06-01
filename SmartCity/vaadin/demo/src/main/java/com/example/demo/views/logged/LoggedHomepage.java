@@ -8,19 +8,19 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
 import java.awt.*;
 
 @PageTitle("SmartCity")
-public class LoggedHomepage extends VerticalLayout{
-
-    private static final String tempval = "temp";
+public class LoggedHomepage extends VerticalLayout implements HasUrlParameter<String> {
 
     private PersonRepo personRepo;
 
-    public LoggedHomepage() {
+/*    public LoggedHomepage() {
         this.personRepo = personRepo;
         var headerLayout = new VerticalLayout();
         headerLayout.setAlignItems(Alignment.CENTER);
@@ -33,7 +33,7 @@ public class LoggedHomepage extends VerticalLayout{
 
         //System.out.println(isLogged);
 
-    }
+    }*/
 
     private VerticalLayout getButtons(){
         var buttonLayout = new VerticalLayout();
@@ -49,4 +49,14 @@ public class LoggedHomepage extends VerticalLayout{
         return buttonLayout;
     }
 
+    @Override
+    public void setParameter(BeforeEvent beforeEvent, String s) {
+        this.personRepo = personRepo;
+        var headerLayout = new VerticalLayout();
+        headerLayout.setAlignItems(Alignment.CENTER);
+        headerLayout.add(new H1("Welcome, " + s + "!"));
+        headerLayout.add("Press a button below and choose your feature!");
+        add(headerLayout);
+        add(getButtons());
+    }
 }

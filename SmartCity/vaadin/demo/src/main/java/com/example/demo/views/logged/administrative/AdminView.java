@@ -11,6 +11,7 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
 import com.vaadin.flow.component.textfield.TextField;
@@ -28,7 +29,7 @@ public class AdminView extends VerticalLayout{
     private TextField lastName = new TextField("Last name");
     private EmailField email = new EmailField("E-Mail");
     private TextField username = new TextField("Username");
-    private TextField userType = new TextField("Type");
+    private Select<String> userType = new Select<>();
     private PasswordField password = new PasswordField("Password");
     private Binder<Person> binder = new Binder<>(Person.class);
 
@@ -39,6 +40,9 @@ public class AdminView extends VerticalLayout{
         headerLayout.add(new H1("Welcome, administrator!"));
         headerLayout.add("Enter some credentials below to register users!");
         add(headerLayout);
+        userType.setLabel("Type");
+        userType.setItems("Resident", "Tourist", "Foreigner", "Businessman", "Admin");
+        userType.setValue("Resident");
         add(getForm());
     }
     private VerticalLayout getForm() {

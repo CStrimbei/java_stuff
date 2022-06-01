@@ -8,5 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ParkingGarageManager {
-
+    /*TODO: split the three parking garages on three different threads, that update the database regularly with occupied spots
+            and reserve spots
+    * */
 }

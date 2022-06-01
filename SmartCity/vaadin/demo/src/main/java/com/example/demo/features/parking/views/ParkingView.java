@@ -32,7 +32,7 @@ public class ParkingView extends VerticalLayout implements HasUrlParameter<Strin
 
     private VerticalLayout getParking() {
 
-        //TODO: add a button that checks free spaces
+        //TODO: add a button that checks the db for free spaces
 
         var layout = new VerticalLayout();
         var reserveButton = new Button("Reserve space now!");

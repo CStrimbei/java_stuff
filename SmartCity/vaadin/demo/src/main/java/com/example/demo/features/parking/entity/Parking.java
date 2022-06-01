@@ -1,4 +1,4 @@
-package com.example.demo.model.parking.entity;
+package com.example.demo.features.parking.entity;
 
 import javax.persistence.*;
 

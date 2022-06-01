@@ -1,4 +1,4 @@
-package com.example.demo.model.parking.repos;
+package com.example.demo.features.parking.repos;
 
 import org.springframework.stereotype.Repository;
 

@@ -2,6 +2,7 @@ package com.example.demo.views.surface;
 
 
 import com.example.demo.entity.Person;
+import com.example.demo.features.parking.ParkingGarageManager;
 import com.example.demo.repos.PersonRepo;
 import com.example.demo.views.logged.administrative.AdminView;
 import com.example.demo.views.logged.LoggedHomepage;
@@ -18,6 +19,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteConfiguration;
+import com.vaadin.flow.server.VaadinSession;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,10 +70,13 @@ public class LoginView extends VerticalLayout {
         return loginLayout;
     }
 
+
     public void authenticate(String username, String password){
         Person person = personRepo.findByUsername(username);
         if(person!=null && person.getPassword().equals(personRepo.findPassword(username))){
             createRoutes(person.getUsertype());
+            VaadinSession.getCurrent().getSession().setAttribute("username", username);
+            ParkingGarageManager parkingGarageManager;
             if(!person.getUsertype().equals("Admin")){
                 UI.getCurrent().navigate("logged");
             } else UI.getCurrent().navigate("adminpanel");

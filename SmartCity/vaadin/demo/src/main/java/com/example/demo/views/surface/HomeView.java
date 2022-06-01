@@ -1,5 +1,6 @@
 package com.example.demo.views.surface;
 
+import com.example.demo.features.parking.ParkingGarageManager;
 import com.example.demo.repos.PersonRepo;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -9,12 +10,16 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Route("")
 @PageTitle("Home")
 public class HomeView extends VerticalLayout {
 
     private PersonRepo personRepo;
+
+    @Autowired
+    ParkingGarageManager parkingGarageManager;
 
     public HomeView(PersonRepo personRepo) {
         this.personRepo = personRepo;

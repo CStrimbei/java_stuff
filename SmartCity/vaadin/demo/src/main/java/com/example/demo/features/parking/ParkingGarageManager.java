@@ -8,10 +8,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ParkingGarageManager {
-    /*public ParkingGarageManager() {
-        String username = "Debug" + VaadinService.getCurrentRequest().getWrappedSession().getAttribute("username");
-        if(username!=null){
-            System.out.println(username);
-        }
-    }*/
+
 }

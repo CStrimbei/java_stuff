@@ -2,6 +2,7 @@ package com.example.demo.views.surface;
 
 
 import com.example.demo.entity.Person;
+import com.example.demo.features.parking.views.ParkingView;
 import com.example.demo.repos.PersonRepo;
 import com.example.demo.views.logged.administrative.AdminView;
 import com.example.demo.views.logged.LoggedHomepage;
@@ -96,9 +97,11 @@ public class LoginView extends VerticalLayout {
         authRoutes.clear();
         if(!usertype.equals("Admin")){
             authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
+            authRoutes.add(new AuthRoute("parking/", "ParkingManagement", ParkingView.class));
         } else {
             authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
             authRoutes.add(new AuthRoute("adminpanel/", "AdminPanel", AdminView.class));
+            authRoutes.add(new AuthRoute("parking/", "ParkingManagement", ParkingView.class));
         }
         System.out.println(authRoutes);
         return authRoutes;

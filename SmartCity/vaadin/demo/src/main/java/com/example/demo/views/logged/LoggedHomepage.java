@@ -1,8 +1,7 @@
 package com.example.demo.views.logged;
 
+import com.example.demo.entity.Person;
 import com.example.demo.repos.PersonRepo;
-import com.example.demo.views.surface.LoginView;
-import com.vaadin.flow.component.ComponentUtil;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -11,9 +10,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
-
-import java.awt.*;
+import com.vaadin.flow.router.QueryParameters;
 
 @PageTitle("SmartCity")
 public class LoggedHomepage extends VerticalLayout implements HasUrlParameter<String> {
@@ -35,15 +32,21 @@ public class LoggedHomepage extends VerticalLayout implements HasUrlParameter<St
 
     }*/
 
-    private VerticalLayout getButtons(){
+    private VerticalLayout getButtons(String s){
         var buttonLayout = new VerticalLayout();
         buttonLayout.setAlignItems(Alignment.CENTER);
         var logoutButton = new Button("Log Out");
-        logoutButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
-        buttonLayout.add(logoutButton);
+        var parkingButton = new Button("Parking");
+        parkingButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        logoutButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        buttonLayout.add(parkingButton, logoutButton);
 
         logoutButton.addClickListener(click -> {
             UI.getCurrent().navigate("/logout");
+        });
+
+        parkingButton.addClickListener(click -> {
+            UI.getCurrent().navigate("/parking/" + s, QueryParameters.fromString(s));
         });
 
         return buttonLayout;
@@ -57,6 +60,6 @@ public class LoggedHomepage extends VerticalLayout implements HasUrlParameter<St
         headerLayout.add(new H1("Welcome, " + s + "!"));
         headerLayout.add("Press a button below and choose your feature!");
         add(headerLayout);
-        add(getButtons());
+        add(getButtons(s));
     }
 }

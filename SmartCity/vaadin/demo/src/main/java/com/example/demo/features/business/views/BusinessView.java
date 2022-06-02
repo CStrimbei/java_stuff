@@ -1,7 +1,6 @@
 package com.example.demo.features.business.views;
 
 
-import com.example.demo.entity.Person;
 import com.example.demo.features.business.entity.Job;
 import com.example.demo.features.business.repo.JobRepo;
 import com.vaadin.flow.component.Key;
@@ -13,11 +12,13 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
-import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.QueryParameters;
 
 @PageTitle("Business Panel")
-public class BusinessView extends VerticalLayout {
+public class BusinessView extends VerticalLayout implements HasUrlParameter<String> {
 
     public JobRepo jobRepo;
     private TextField company = new TextField("Company name");
@@ -27,23 +28,20 @@ public class BusinessView extends VerticalLayout {
     private Binder<Job> binder = new Binder<>(Job.class);
     public BusinessView(JobRepo jobRepo) {
         this.jobRepo = jobRepo;
-        var headerLayout = new VerticalLayout();
-        headerLayout.setAlignItems(Alignment.CENTER);
-        headerLayout.add(new H1("Welcome to the business interface!"));
-        headerLayout.add("Add a job below!");
-        add(headerLayout);
-        add(getForm());
+
     }
-    public VerticalLayout getForm(){
+    public VerticalLayout getForm(String s){
         var layout = new VerticalLayout();
         layout.setAlignItems(Alignment.CENTER);
         var addButton = new Button("Add");
-        var homeButton = new Button("Hotels");
+        var hotelButton = new Button("Hotels");
         var logoutButton = new Button("Log out");
+        var jobButton = new Button("Job listings");
+        jobButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         logoutButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
         addButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        homeButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
-        layout.add(company, position, salary, contact, addButton, homeButton, logoutButton);
+        hotelButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        layout.add(company, position, salary, contact, addButton, hotelButton, jobButton, logoutButton);
         addButton.addClickShortcut(Key.ENTER);
         addButton.addClickListener(click -> {
                 var job = new Job();
@@ -59,8 +57,22 @@ public class BusinessView extends VerticalLayout {
             UI.getCurrent().navigate("/logout");
         });
 
+        jobButton.addClickListener(click ->{
+            UI.getCurrent().navigate("jobs/" + s, QueryParameters.fromString(s));
+        });
+
         //TODO: interfata hotels la click pe butonul hotels
 
         return layout;
+    }
+
+    @Override
+    public void setParameter(BeforeEvent beforeEvent, String s) {
+        var headerLayout = new VerticalLayout();
+        headerLayout.setAlignItems(Alignment.CENTER);
+        headerLayout.add(new H1("Welcome to the business interface!"));
+        headerLayout.add("Add a job below!");
+        add(headerLayout);
+        add(getForm(s));
     }
 }

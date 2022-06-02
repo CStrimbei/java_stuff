@@ -1,17 +1,13 @@
-package com.example.demo.views.surface;
-
-
-import com.example.demo.repos.PersonRepo;
-import com.example.demo.entity.Person;
-import com.vaadin.flow.component.Component;
+package com.example.demo.general.views.logged.administrative;
+import com.example.demo.general.repos.PersonRepo;
+import com.example.demo.general.entity.Person;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.PasswordField;
@@ -19,46 +15,45 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.data.binder.ValidationException;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
 
-@Route("/register")
-@PageTitle("Register")
-public class RegisterView extends VerticalLayout {
+
+@PageTitle("Admin Panel")
+public class AdminView extends VerticalLayout implements HasUrlParameter<String> {
     private PersonRepo personRepo;
     private TextField firstName = new TextField("First name");
     private TextField lastName = new TextField("Last name");
     private EmailField email = new EmailField("E-Mail");
     private TextField username = new TextField("Username");
-    //private TextField userType = new TextField("Type");
-
     private Select<String> userType = new Select<>();
-
     private PasswordField password = new PasswordField("Password");
     private Binder<Person> binder = new Binder<>(Person.class);
 
-    public RegisterView(PersonRepo personRepo) {
+    /*public AdminView(PersonRepo personRepo) {
         this.personRepo = personRepo;
         var headerLayout = new VerticalLayout();
-        headerLayout.setAlignItems(Alignment.CENTER);
-        headerLayout.add(new H1("Welcome to my SmartCity app!"));
-        headerLayout.add("Enter your credentials below to register!");
+        headerLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+        headerLayout.add(new H1("Welcome, administrator!"));
+        headerLayout.add("Enter some credentials below to register users!");
         add(headerLayout);
         userType.setLabel("Type");
-        userType.setItems("Resident", "Tourist", "Foreigner", "Businessman");
+        userType.setItems("Resident", "Tourist", "Foreigner", "Businessman", "Admin");
         userType.setValue("Resident");
         add(getForm());
-    }
-
-    private VerticalLayout getForm() {
+    }*/
+    private VerticalLayout getForm(String s) {
         var layout = new VerticalLayout();
-        layout.setAlignItems(Alignment.CENTER);
-        var registerButton = new Button("Register");
-        var loginButton = new Button("Login");
+        layout.setAlignItems(FlexComponent.Alignment.CENTER);
+        var registerButton = new Button("Register new user");
+        var logoutButton = new Button("Log Out");
+        var homeButton = new Button("Home");
+        homeButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         registerButton.addClickShortcut(Key.ENTER);
         registerButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        loginButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
-        layout.add(firstName, lastName, email, userType, username, password, registerButton, loginButton);
+        logoutButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        layout.add(firstName, lastName, email, userType, username, password, registerButton, homeButton, logoutButton);
         binder.bindInstanceFields(this);
 
         registerButton.addClickListener(click -> {
@@ -69,32 +64,47 @@ public class RegisterView extends VerticalLayout {
                     layout.removeAll();
                     layout.add(firstName, lastName, email, userType, username, password);
                     Notification.show("User already exists!");
-                    layout.add(registerButton, loginButton);
+                    layout.add(registerButton, homeButton, logoutButton);
                 } else if (person.getUsername()==""||person.getEmail()==""||person.getFirstname()==""||person.getLastname()==""||person.getPassword()==""||person.getUsertype()=="") {
                     layout.removeAll();
                     layout.add(firstName, lastName, email, userType, username, password);
                     Notification.show("You haven't entered all of the credentials!");
-                    layout.add(registerButton, loginButton);
+                    layout.add(registerButton, homeButton, logoutButton);
                 }else{
                     layout.removeAll();
-                    person.setUsertype(userType.getValue());
                     personRepo.saveAndFlush(person);
                     binder.readBean(new Person());
                     layout.add(firstName, lastName, email, userType, username, password);
                     Notification.show("User added successfully!");
-                    layout.add(registerButton, loginButton);
+                    layout.add(registerButton, homeButton, logoutButton);
                 }
             } catch (ValidationException e){
                 e.printStackTrace();
             }
         });
 
-        loginButton.addClickListener(event -> UI.getCurrent().navigate("/login"));
+        logoutButton.addClickListener(click -> {
+            UI.getCurrent().navigate("/logout");
+        });
+
+        homeButton.addClickListener(click -> {
+            UI.getCurrent().navigate("/logged/" + s);
+        });
 
         return layout;
     }
 
-    /*private void refreshGrid() {
-        grid.setItems(personRepo.findAll());
-    }*/
+    @Override
+    public void setParameter(BeforeEvent beforeEvent, String s) {
+        this.personRepo = personRepo;
+        var headerLayout = new VerticalLayout();
+        headerLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+        headerLayout.add(new H1("Welcome, " + s + "!"));
+        headerLayout.add("Enter some credentials below to register users!");
+        add(headerLayout);
+        userType.setLabel("Type");
+        userType.setItems("Resident", "Tourist", "Foreigner", "Businessman", "Admin");
+        userType.setValue("Resident");
+        add(getForm(s));
+    }
 }

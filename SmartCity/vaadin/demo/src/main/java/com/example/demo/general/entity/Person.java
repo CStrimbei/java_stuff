@@ -1,4 +1,4 @@
-package com.example.demo.entity;
+package com.example.demo.general.entity;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.RandomStringUtils;

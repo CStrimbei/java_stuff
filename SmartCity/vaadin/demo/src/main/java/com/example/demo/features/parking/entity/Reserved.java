@@ -1,6 +1,6 @@
 package com.example.demo.features.parking.entity;
 
-import com.example.demo.entity.Person;
+import com.example.demo.general.entity.Person;
 
 import javax.persistence.*;
 

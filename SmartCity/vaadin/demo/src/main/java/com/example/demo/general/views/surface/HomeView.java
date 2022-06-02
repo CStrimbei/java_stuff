@@ -1,7 +1,6 @@
-package com.example.demo.views.surface;
+package com.example.demo.general.views.surface;
 
-import com.example.demo.features.parking.management.ParkingGarageManager;
-import com.example.demo.repos.PersonRepo;
+import com.example.demo.general.repos.PersonRepo;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -9,7 +8,6 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Route("")
 @PageTitle("Home")
@@ -24,7 +22,7 @@ public class HomeView extends VerticalLayout {
         var headerLayout = new VerticalLayout();
         headerLayout.setAlignItems(Alignment.CENTER);
         headerLayout.add(new H1("Welcome to my SmartCity app!"));
-        headerLayout.add("Lorem ipsum info stuff");
+        headerLayout.add("Whether you're visiting or a resident, this app will help you find your way around the city! We'll give you the possibility to book a parking space, to see or add potential job listings in the city and see information about hotels!");
         add(headerLayout);
         add(getHomepage());
     }

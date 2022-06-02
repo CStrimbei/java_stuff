@@ -5,7 +5,7 @@ import com.example.demo.features.parking.entity.Reserved;
 import com.example.demo.features.parking.management.ParkingGarageManager;
 import com.example.demo.features.parking.repos.ParkingRepo;
 import com.example.demo.features.parking.repos.ReservedRepo;
-import com.example.demo.repos.PersonRepo;
+import com.example.demo.general.repos.PersonRepo;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;

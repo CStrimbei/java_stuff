@@ -1,7 +1,6 @@
-package com.example.demo.views.logged;
+package com.example.demo.general.views.logged;
 
-import com.example.demo.entity.Person;
-import com.example.demo.repos.PersonRepo;
+import com.example.demo.general.repos.PersonRepo;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -34,12 +33,21 @@ public class LoggedHomepage extends VerticalLayout implements HasUrlParameter<St
 
     private VerticalLayout getButtons(String s){
         var buttonLayout = new VerticalLayout();
+
         buttonLayout.setAlignItems(Alignment.CENTER);
         var logoutButton = new Button("Log Out");
         var parkingButton = new Button("Parking");
+        var buttonJobs = new Button("Job Listings");
+        var buttonHotels = new Button("Book a hotel room");
+        var buttonMuseums = new Button("Museums and history");
+        var buttonQuality = new Button("See the quality of air in areas of the city");
+        buttonQuality.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        buttonMuseums.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        buttonJobs.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         parkingButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         logoutButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        buttonLayout.add(parkingButton, logoutButton);
+        buttonHotels.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        buttonLayout.add(parkingButton, buttonJobs, buttonHotels, buttonMuseums, buttonQuality, logoutButton);
 
         logoutButton.addClickListener(click -> {
             UI.getCurrent().navigate("/logout");
@@ -47,6 +55,22 @@ public class LoggedHomepage extends VerticalLayout implements HasUrlParameter<St
 
         parkingButton.addClickListener(click -> {
             UI.getCurrent().navigate("/parking/" + s, QueryParameters.fromString(s));
+        });
+
+        buttonJobs.addClickListener(click -> {
+            UI.getCurrent().navigate("/jobs/" + s, QueryParameters.fromString(s));
+        });
+
+        buttonHotels.addClickListener(click->{
+            UI.getCurrent().navigate("/hotels/" + s, QueryParameters.fromString(s));
+        });
+
+        buttonMuseums.addClickListener(click->{
+            UI.getCurrent().navigate("/history/" + s, QueryParameters.fromString(s));
+        });
+
+        buttonQuality.addClickListener(click-> {
+            UI.getCurrent().navigate("/qualityair/" + s, QueryParameters.fromString(s));
         });
 
         return buttonLayout;

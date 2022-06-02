@@ -1,4 +1,4 @@
-package com.example.demo.views.logged;
+package com.example.demo.general.views.logged;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;

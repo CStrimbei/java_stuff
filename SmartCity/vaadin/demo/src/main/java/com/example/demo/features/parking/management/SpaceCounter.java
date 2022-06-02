@@ -33,7 +33,7 @@ public class SpaceCounter {
         reservedSpaces = reservedRepo.getFreeSpaceCount(parking);
         occupied += reservedSpaces;
         freeSpaces = total - occupied;
-        System.out.println("Occupied: " + occupied + " " + "Reserved: " + reservedSpaces + " "+ "Free: " + freeSpaces + " Total: " + total);
+        //System.out.println("Occupied: " + occupied + " " + "Reserved: " + reservedSpaces + " "+ "Free: " + freeSpaces + " Total: " + total);
         updateSeats(reservedSpaces, freeSpaces, address);
     }
 

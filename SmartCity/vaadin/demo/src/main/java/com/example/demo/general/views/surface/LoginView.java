@@ -1,13 +1,16 @@
-package com.example.demo.views.surface;
+package com.example.demo.general.views.surface;
 
 
-import com.example.demo.entity.Person;
+import com.example.demo.features.qualityofair.views.QualityAirView;
+import com.example.demo.general.entity.Person;
 import com.example.demo.features.business.views.BusinessView;
 import com.example.demo.features.business.views.JobListView;
+import com.example.demo.features.hotels.views.HotelView;
+import com.example.demo.features.muzee.views.MuzeeView;
 import com.example.demo.features.parking.views.ParkingView;
-import com.example.demo.repos.PersonRepo;
-import com.example.demo.views.logged.administrative.AdminView;
-import com.example.demo.views.logged.LoggedHomepage;
+import com.example.demo.general.repos.PersonRepo;
+import com.example.demo.general.views.logged.LoggedHomepage;
+import com.example.demo.general.views.logged.administrative.AdminView;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
@@ -78,7 +81,7 @@ public class LoginView extends VerticalLayout {
         if(person!=null && password.equals(person.getPassword())){
             createRoutes(person.getUsertype());
             if(person.getUsertype().equals("Businessman")){
-                UI.getCurrent().navigate("business/");
+                UI.getCurrent().navigate("business/" + username, QueryParameters.fromString(username));
             }else if(!person.getUsertype().equals("Admin")){
                 UI.getCurrent().navigate("logged/" + username, QueryParameters.fromString(username));
             } else UI.getCurrent().navigate("adminpanel/" + username, QueryParameters.fromString(username));
@@ -101,17 +104,28 @@ public class LoginView extends VerticalLayout {
         authRoutes.clear();
         if(usertype.equals("Businessman")){
             authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
+            authRoutes.add(new AuthRoute("parking/", "ParkingManagement", ParkingView.class));
             authRoutes.add(new AuthRoute("business/", "BusinessPanel", BusinessView.class));
+            authRoutes.add(new AuthRoute("jobs/", "JobList", JobListView.class));
+            authRoutes.add(new AuthRoute("hotels/", "HotelList", HotelView.class));
+            authRoutes.add(new AuthRoute("history/", "HistoryAndMuseums", MuzeeView.class));
+            authRoutes.add(new AuthRoute("qualityair/", "QualityOfAir", QualityAirView.class));
         }else if(!usertype.equals("Admin")){
             authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
             authRoutes.add(new AuthRoute("parking/", "ParkingManagement", ParkingView.class));
             authRoutes.add(new AuthRoute("jobs/", "JobList", JobListView.class));
+            authRoutes.add(new AuthRoute("hotels/", "HotelList", HotelView.class));
+            authRoutes.add(new AuthRoute("history/", "HistoryAndMuseums", MuzeeView.class));
+            authRoutes.add(new AuthRoute("qualityair/", "QualityOfAir", QualityAirView.class));
         } else {
             authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
             authRoutes.add(new AuthRoute("adminpanel/", "AdminPanel", AdminView.class));
             authRoutes.add(new AuthRoute("parking/", "ParkingManagement", ParkingView.class));
             authRoutes.add(new AuthRoute("jobs/", "JobList", JobListView.class));
             authRoutes.add(new AuthRoute("business/", "BusinessPanel", BusinessView.class));
+            authRoutes.add(new AuthRoute("hotels/", "HotelList", HotelView.class));
+            authRoutes.add(new AuthRoute("history/", "HistoryAndMuseums", MuzeeView.class));
+            authRoutes.add(new AuthRoute("qualityair/", "QualityOfAir", QualityAirView.class));
         }
         System.out.println(authRoutes);
         return authRoutes;

@@ -17,8 +17,7 @@ public class HomeView extends VerticalLayout {
 
     private PersonRepo personRepo;
 
-    @Autowired
-    ParkingGarageManager parkingGarageManager;
+
 
     public HomeView(PersonRepo personRepo) {
         this.personRepo = personRepo;

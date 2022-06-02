@@ -38,7 +38,7 @@ public class RegisterView extends VerticalLayout {
         this.personRepo = personRepo;
         var headerLayout = new VerticalLayout();
         headerLayout.setAlignItems(Alignment.CENTER);
-        headerLayout.add(new H1("Welcome to my SmartCity app!"));
+        headerLayout.add(new H1("Welcome to SmartCity Iasi!"));
         headerLayout.add("Enter your credentials below to register!");
         add(headerLayout);
         userType.setLabel("Type");

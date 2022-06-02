@@ -5,6 +5,7 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -21,8 +22,8 @@ public class HomeView extends VerticalLayout {
         this.personRepo = personRepo;
         var headerLayout = new VerticalLayout();
         headerLayout.setAlignItems(Alignment.CENTER);
-        headerLayout.add(new H1("Welcome to my SmartCity app!"));
-        headerLayout.add("Whether you're visiting or a resident, this app will help you find your way around the city! We'll give you the possibility to book a parking space, to see or add potential job listings in the city and see information about hotels!");
+        headerLayout.add(new H1("Welcome to SmartCity Iasi!"));
+        headerLayout.add("Whether you're visiting or a resident, this app will help you find your way around the city! You have the possibility to book a parking space, to see or add job listings in the city, see hotel info, see a list of museums and maybe plan your studies here!");
         add(headerLayout);
         add(getHomepage());
     }

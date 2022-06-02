@@ -49,7 +49,7 @@ public class LoginView extends VerticalLayout {
     private VerticalLayout getHeader() {
         var headerLayout = new VerticalLayout();
         headerLayout.setAlignItems(Alignment.CENTER);
-        headerLayout.add(new H1("Welcome to my SmartCity app!"));
+        headerLayout.add(new H1("Welcome to SmartCity Iasi!"));
         return headerLayout;
     }
 

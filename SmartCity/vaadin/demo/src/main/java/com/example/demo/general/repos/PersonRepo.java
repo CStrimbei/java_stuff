@@ -11,4 +11,7 @@ public interface PersonRepo extends JpaRepository<Person, Long> {
     Person findByUsername(String username);
     @Query("select u.password from Person u where u.username=?1")
     String findPassword(String username);
+
+    @Query("select count(u) from Person u")
+    Integer findCountAll();
 }

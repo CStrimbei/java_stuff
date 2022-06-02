@@ -2,6 +2,7 @@ package com.example.demo.general.views.surface;
 
 
 import com.example.demo.features.qualityofair.views.QualityAirView;
+import com.example.demo.features.universities.views.UniversityView;
 import com.example.demo.general.entity.Person;
 import com.example.demo.features.business.views.BusinessView;
 import com.example.demo.features.business.views.JobListView;
@@ -10,7 +11,7 @@ import com.example.demo.features.muzee.views.MuzeeView;
 import com.example.demo.features.parking.views.ParkingView;
 import com.example.demo.general.repos.PersonRepo;
 import com.example.demo.general.views.logged.LoggedHomepage;
-import com.example.demo.general.views.logged.administrative.AdminView;
+import com.example.demo.general.views.logged.administrative.views.*;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.UI;
@@ -84,7 +85,7 @@ public class LoginView extends VerticalLayout {
                 UI.getCurrent().navigate("business/" + username, QueryParameters.fromString(username));
             }else if(!person.getUsertype().equals("Admin")){
                 UI.getCurrent().navigate("logged/" + username, QueryParameters.fromString(username));
-            } else UI.getCurrent().navigate("adminpanel/" + username, QueryParameters.fromString(username));
+            } else UI.getCurrent().navigate("admindash/" + username, QueryParameters.fromString(username));
 
         } else{
             Notification.show("Wrong credentials!");
@@ -110,6 +111,7 @@ public class LoginView extends VerticalLayout {
             authRoutes.add(new AuthRoute("hotels/", "HotelList", HotelView.class));
             authRoutes.add(new AuthRoute("history/", "HistoryAndMuseums", MuzeeView.class));
             authRoutes.add(new AuthRoute("qualityair/", "QualityOfAir", QualityAirView.class));
+            authRoutes.add(new AuthRoute("universities/", "Universities", UniversityView.class));
         }else if(!usertype.equals("Admin")){
             authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
             authRoutes.add(new AuthRoute("parking/", "ParkingManagement", ParkingView.class));
@@ -117,6 +119,7 @@ public class LoginView extends VerticalLayout {
             authRoutes.add(new AuthRoute("hotels/", "HotelList", HotelView.class));
             authRoutes.add(new AuthRoute("history/", "HistoryAndMuseums", MuzeeView.class));
             authRoutes.add(new AuthRoute("qualityair/", "QualityOfAir", QualityAirView.class));
+            authRoutes.add(new AuthRoute("universities/", "Universities", UniversityView.class));
         } else {
             authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
             authRoutes.add(new AuthRoute("adminpanel/", "AdminPanel", AdminView.class));
@@ -126,6 +129,10 @@ public class LoginView extends VerticalLayout {
             authRoutes.add(new AuthRoute("hotels/", "HotelList", HotelView.class));
             authRoutes.add(new AuthRoute("history/", "HistoryAndMuseums", MuzeeView.class));
             authRoutes.add(new AuthRoute("qualityair/", "QualityOfAir", QualityAirView.class));
+            authRoutes.add(new AuthRoute("universities/", "Universities", UniversityView.class));
+            authRoutes.add(new AuthRoute("admindash/", "AdminDashboard", DashboardView.class));
+            authRoutes.add(new AuthRoute("usertable/", "UserTable", UserView.class));
+            authRoutes.add(new AuthRoute("jobtableadmin/", "JobTableAdmin", JobListAdmin.class));
         }
         System.out.println(authRoutes);
         return authRoutes;

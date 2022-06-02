@@ -41,13 +41,15 @@ public class LoggedHomepage extends VerticalLayout implements HasUrlParameter<St
         var buttonHotels = new Button("Book a hotel room");
         var buttonMuseums = new Button("Museums and history");
         var buttonQuality = new Button("See the quality of air in areas of the city");
+        var buttonUniversities = new Button("See the Universities of Iasi");
+        buttonUniversities.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         buttonQuality.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         buttonMuseums.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         buttonJobs.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         parkingButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         logoutButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
         buttonHotels.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        buttonLayout.add(parkingButton, buttonJobs, buttonHotels, buttonMuseums, buttonQuality, logoutButton);
+        buttonLayout.add(parkingButton, buttonJobs, buttonHotels, buttonMuseums, buttonQuality, buttonUniversities, logoutButton);
 
         logoutButton.addClickListener(click -> {
             UI.getCurrent().navigate("/logout");
@@ -71,6 +73,10 @@ public class LoggedHomepage extends VerticalLayout implements HasUrlParameter<St
 
         buttonQuality.addClickListener(click-> {
             UI.getCurrent().navigate("/qualityair/" + s, QueryParameters.fromString(s));
+        });
+
+        buttonUniversities.addClickListener(click->{
+            UI.getCurrent().navigate("/universities/" + s, QueryParameters.fromString(s));
         });
 
         return buttonLayout;

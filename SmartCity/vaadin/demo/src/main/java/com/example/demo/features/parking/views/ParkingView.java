@@ -51,8 +51,6 @@ public class ParkingView extends VerticalLayout implements HasUrlParameter<Strin
 
     private VerticalLayout getParking(String s) {
 
-        //TODO: add a button that checks the db for free spaces
-
         var layout = new VerticalLayout();
         var reserveButton = new Button("Reserve space now!");
         var freeSpaceButton = new Button("Free spaces?");
@@ -87,7 +85,6 @@ public class ParkingView extends VerticalLayout implements HasUrlParameter<Strin
             }
         });
         reserveButton.addClickListener(click -> {
-            //TODO: handle the click, updating the DB
                 var reserved = new Reserved();
                 var person = personRepo.findByUsername(s);
                 var parking = parkingRepo.getObject(parkingGarages.getValue());

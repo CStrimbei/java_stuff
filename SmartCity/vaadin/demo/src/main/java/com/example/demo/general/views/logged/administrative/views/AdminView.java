@@ -1,4 +1,4 @@
-package com.example.demo.general.views.logged.administrative;
+package com.example.demo.general.views.logged.administrative.views;
 import com.example.demo.general.repos.PersonRepo;
 import com.example.demo.general.entity.Person;
 import com.vaadin.flow.component.Key;
@@ -18,6 +18,7 @@ import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.QueryParameters;
 
 
 @PageTitle("Admin Panel")
@@ -49,11 +50,13 @@ public class AdminView extends VerticalLayout implements HasUrlParameter<String>
         var registerButton = new Button("Register new user");
         var logoutButton = new Button("Log Out");
         var homeButton = new Button("Home");
+        var dashboardButton = new Button("Dashboard");
+        dashboardButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         homeButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
         registerButton.addClickShortcut(Key.ENTER);
         registerButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         logoutButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
-        layout.add(firstName, lastName, email, userType, username, password, registerButton, homeButton, logoutButton);
+        layout.add(firstName, lastName, email, userType, username, password, registerButton, dashboardButton, homeButton, logoutButton);
         binder.bindInstanceFields(this);
 
         registerButton.addClickListener(click -> {
@@ -64,19 +67,19 @@ public class AdminView extends VerticalLayout implements HasUrlParameter<String>
                     layout.removeAll();
                     layout.add(firstName, lastName, email, userType, username, password);
                     Notification.show("User already exists!");
-                    layout.add(registerButton, homeButton, logoutButton);
+                    layout.add(registerButton, dashboardButton, homeButton, logoutButton);
                 } else if (person.getUsername()==""||person.getEmail()==""||person.getFirstname()==""||person.getLastname()==""||person.getPassword()==""||person.getUsertype()=="") {
                     layout.removeAll();
                     layout.add(firstName, lastName, email, userType, username, password);
                     Notification.show("You haven't entered all of the credentials!");
-                    layout.add(registerButton, homeButton, logoutButton);
+                    layout.add(registerButton, dashboardButton, homeButton, logoutButton);
                 }else{
                     layout.removeAll();
                     personRepo.saveAndFlush(person);
                     binder.readBean(new Person());
                     layout.add(firstName, lastName, email, userType, username, password);
                     Notification.show("User added successfully!");
-                    layout.add(registerButton, homeButton, logoutButton);
+                    layout.add(registerButton, dashboardButton, homeButton, logoutButton);
                 }
             } catch (ValidationException e){
                 e.printStackTrace();
@@ -88,7 +91,11 @@ public class AdminView extends VerticalLayout implements HasUrlParameter<String>
         });
 
         homeButton.addClickListener(click -> {
-            UI.getCurrent().navigate("/logged/" + s);
+            UI.getCurrent().navigate("/logged/" + s, QueryParameters.fromString(s));
+        });
+
+        dashboardButton.addClickListener(click->{
+            UI.getCurrent().navigate("/admindash/" + s, QueryParameters.fromString(s));
         });
 
         return layout;

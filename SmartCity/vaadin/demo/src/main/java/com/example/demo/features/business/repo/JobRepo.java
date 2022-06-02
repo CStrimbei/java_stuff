@@ -11,4 +11,6 @@ import java.util.List;
 public interface JobRepo extends JpaRepository<Job, Integer> {
     @Query("select u from Job u")
     List<Job> findAll();
+    @Query("select count(u) from Job u")
+    Integer getAllJobCount();
 }

@@ -32,18 +32,9 @@ public class AdminView extends VerticalLayout implements HasUrlParameter<String>
     private PasswordField password = new PasswordField("Password");
     private Binder<Person> binder = new Binder<>(Person.class);
 
-    /*public AdminView(PersonRepo personRepo) {
+    public AdminView(PersonRepo personRepo) {
         this.personRepo = personRepo;
-        var headerLayout = new VerticalLayout();
-        headerLayout.setAlignItems(FlexComponent.Alignment.CENTER);
-        headerLayout.add(new H1("Welcome, administrator!"));
-        headerLayout.add("Enter some credentials below to register users!");
-        add(headerLayout);
-        userType.setLabel("Type");
-        userType.setItems("Resident", "Tourist", "Foreigner", "Businessman", "Admin");
-        userType.setValue("Resident");
-        add(getForm());
-    }*/
+    }
     private VerticalLayout getForm(String s) {
         var layout = new VerticalLayout();
         layout.setAlignItems(FlexComponent.Alignment.CENTER);

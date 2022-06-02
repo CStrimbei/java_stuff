@@ -61,7 +61,9 @@ public class BusinessView extends VerticalLayout implements HasUrlParameter<Stri
             UI.getCurrent().navigate("jobs/" + s, QueryParameters.fromString(s));
         });
 
-        //TODO: interfata hotels la click pe butonul hotels
+        hotelButton.addClickListener(click->{
+            UI.getCurrent().navigate("/hotels/" + s, QueryParameters.fromString(s));
+        });
 
         return layout;
     }

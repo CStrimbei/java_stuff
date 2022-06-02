@@ -7,11 +7,13 @@ import com.example.demo.features.parking.management.SpaceCounter;
 import com.example.demo.features.parking.repos.ParkingRepo;
 import com.example.demo.features.parking.repos.ReservedRepo;
 import com.example.demo.repos.PersonRepo;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.data.binder.Binder;
@@ -56,18 +58,34 @@ public class ParkingView extends VerticalLayout implements HasUrlParameter<Strin
 
         var layout = new VerticalLayout();
         var reserveButton = new Button("Reserve space now!");
-        int totalSpaces1 = parkingRepo.getTotalSpaces("Parking Garage 1");
-        int occupiedSpaces1 = randomizer.nextInt(totalSpaces1+1);
-        int totalSpaces2 = parkingRepo.getTotalSpaces("Parking Garage 2");
-        int occupiedSpaces2 = randomizer.nextInt(totalSpaces2+1);
-        int totalSpaces3 = parkingRepo.getTotalSpaces("Parking Garage 3");
-        int occupiedSpaces3 = randomizer.nextInt(totalSpaces3+1);
+        var freeSpaceButton = new Button("Free spaces?");
+        freeSpaceButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        var park1 = parkingRepo.getObject("Parking Garage 1");
+        var park2 = parkingRepo.getObject("Parking Garage 2");
+        var park3 = parkingRepo.getObject("Parking Garage 3");
+        int totalSpaces1 = 170;
+        int occupiedSpaces1 = randomizer.nextInt(totalSpaces1+1) + reservedRepo.getFreeSpaceCount(park1);
+        int totalSpaces2 = 130;
+        int occupiedSpaces2 = randomizer.nextInt(totalSpaces2+1) + reservedRepo.getFreeSpaceCount(park2);
+        int totalSpaces3 = 200;
+        int occupiedSpaces3 = randomizer.nextInt(totalSpaces3+1) + reservedRepo.getFreeSpaceCount(park3);
         reserveButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         parkingGarages.setLabel("Choose a parking garage");
         parkingGarages.setValue("Parking Garage 1");
         parkingGarages.setItems("Parking Garage 1", "Parking Garage 2", "Parking Garage 3");
         layout.setAlignItems(Alignment.CENTER);
-        layout.add(parkingGarages, reserveButton);
+        layout.add(parkingGarages, reserveButton, freeSpaceButton);
+        freeSpaceButton.addClickListener(click ->{
+            if(parkingGarages.getValue()==null){
+                Notification.show("Select a parking garage to see the free spaces!");
+            }else if(parkingGarages.getValue().equals("Parking Garage 1")){
+                Notification.show("Parking garage 1 has " + (totalSpaces1-occupiedSpaces1) + " free spaces");
+            } else if(parkingGarages.getValue().equals("Parking Garage 2")){
+                Notification.show("Parking garage 2 has " + (totalSpaces2-occupiedSpaces2) + " free spaces");
+            } else if(parkingGarages.getValue().equals("Parking Garage 3")){
+                Notification.show("Parking garage 3 has " + (totalSpaces3-occupiedSpaces3) + " free spaces");
+            }
+        });
         reserveButton.addClickListener(click -> {
             //TODO: handle the click, updating the DB
                 var reserved = new Reserved();

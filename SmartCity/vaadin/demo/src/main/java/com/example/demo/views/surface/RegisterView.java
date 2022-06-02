@@ -55,7 +55,6 @@ public class RegisterView extends VerticalLayout {
         layout.setAlignItems(Alignment.CENTER);
         var registerButton = new Button("Register");
         var loginButton = new Button("Login");
-
         registerButton.addClickShortcut(Key.ENTER);
         registerButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         loginButton.addThemeVariants(ButtonVariant.LUMO_CONTRAST);
@@ -78,6 +77,7 @@ public class RegisterView extends VerticalLayout {
                     layout.add(registerButton, loginButton);
                 }else{
                     layout.removeAll();
+                    person.setUsertype(userType.getValue());
                     personRepo.saveAndFlush(person);
                     binder.readBean(new Person());
                     layout.add(firstName, lastName, email, userType, username, password);

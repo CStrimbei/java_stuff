@@ -2,6 +2,8 @@ package com.example.demo.views.surface;
 
 
 import com.example.demo.entity.Person;
+import com.example.demo.features.business.views.BusinessView;
+import com.example.demo.features.business.views.JobListView;
 import com.example.demo.features.parking.views.ParkingView;
 import com.example.demo.repos.PersonRepo;
 import com.example.demo.views.logged.administrative.AdminView;
@@ -75,7 +77,9 @@ public class LoginView extends VerticalLayout {
         Person person = personRepo.findByUsername(username);
         if(person!=null && password.equals(person.getPassword())){
             createRoutes(person.getUsertype());
-            if(!person.getUsertype().equals("Admin")){
+            if(person.getUsertype().equals("Businessman")){
+                UI.getCurrent().navigate("business/");
+            }else if(!person.getUsertype().equals("Admin")){
                 UI.getCurrent().navigate("logged/" + username, QueryParameters.fromString(username));
             } else UI.getCurrent().navigate("adminpanel/" + username, QueryParameters.fromString(username));
 
@@ -95,13 +99,19 @@ public class LoginView extends VerticalLayout {
 
         var authRoutes = new ArrayList<AuthRoute>();
         authRoutes.clear();
-        if(!usertype.equals("Admin")){
+        if(usertype.equals("Businessman")){
+            authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
+            authRoutes.add(new AuthRoute("business/", "BusinessPanel", BusinessView.class));
+        }else if(!usertype.equals("Admin")){
             authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
             authRoutes.add(new AuthRoute("parking/", "ParkingManagement", ParkingView.class));
+            authRoutes.add(new AuthRoute("jobs/", "JobList", JobListView.class));
         } else {
             authRoutes.add(new AuthRoute("logged/", "LoggedHome", LoggedHomepage.class));
             authRoutes.add(new AuthRoute("adminpanel/", "AdminPanel", AdminView.class));
             authRoutes.add(new AuthRoute("parking/", "ParkingManagement", ParkingView.class));
+            authRoutes.add(new AuthRoute("jobs/", "JobList", JobListView.class));
+            authRoutes.add(new AuthRoute("business/", "BusinessPanel", BusinessView.class));
         }
         System.out.println(authRoutes);
         return authRoutes;

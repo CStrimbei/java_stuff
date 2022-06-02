@@ -3,26 +3,23 @@ package com.example.demo.features.parking.views;
 import com.example.demo.features.parking.entity.Parking;
 import com.example.demo.features.parking.entity.Reserved;
 import com.example.demo.features.parking.management.ParkingGarageManager;
-import com.example.demo.features.parking.management.SpaceCounter;
 import com.example.demo.features.parking.repos.ParkingRepo;
 import com.example.demo.features.parking.repos.ReservedRepo;
 import com.example.demo.repos.PersonRepo;
-import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.select.Select;
 import com.vaadin.flow.data.binder.Binder;
-import com.vaadin.flow.data.binder.ValidationException;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.PageTitle;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @PageTitle("Parking Management")
 public class ParkingView extends VerticalLayout implements HasUrlParameter<String> {
@@ -64,11 +61,11 @@ public class ParkingView extends VerticalLayout implements HasUrlParameter<Strin
         var park2 = parkingRepo.getObject("Parking Garage 2");
         var park3 = parkingRepo.getObject("Parking Garage 3");
         int totalSpaces1 = 170;
-        int occupiedSpaces1 = randomizer.nextInt(totalSpaces1+1) + reservedRepo.getFreeSpaceCount(park1);
+        AtomicInteger occupiedSpaces1 = new AtomicInteger(randomizer.nextInt(totalSpaces1 + 1));
         int totalSpaces2 = 130;
-        int occupiedSpaces2 = randomizer.nextInt(totalSpaces2+1) + reservedRepo.getFreeSpaceCount(park2);
+        AtomicInteger occupiedSpaces2 = new AtomicInteger(randomizer.nextInt(totalSpaces2 + 1));
         int totalSpaces3 = 200;
-        int occupiedSpaces3 = randomizer.nextInt(totalSpaces3+1) + reservedRepo.getFreeSpaceCount(park3);
+        AtomicInteger occupiedSpaces3 = new AtomicInteger(randomizer.nextInt(totalSpaces3 + 1));
         reserveButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         parkingGarages.setLabel("Choose a parking garage");
         parkingGarages.setValue("Parking Garage 1");
@@ -79,11 +76,14 @@ public class ParkingView extends VerticalLayout implements HasUrlParameter<Strin
             if(parkingGarages.getValue()==null){
                 Notification.show("Select a parking garage to see the free spaces!");
             }else if(parkingGarages.getValue().equals("Parking Garage 1")){
-                Notification.show("Parking garage 1 has " + (totalSpaces1-occupiedSpaces1) + " free spaces");
+                occupiedSpaces1.addAndGet(reservedRepo.getFreeSpaceCount(park1));
+                Notification.show("Parking garage 1 has " + (totalSpaces1- occupiedSpaces1.get()) + " free spaces");
             } else if(parkingGarages.getValue().equals("Parking Garage 2")){
-                Notification.show("Parking garage 2 has " + (totalSpaces2-occupiedSpaces2) + " free spaces");
+                occupiedSpaces2.addAndGet(reservedRepo.getFreeSpaceCount(park2));
+                Notification.show("Parking garage 2 has " + (totalSpaces2- occupiedSpaces2.get()) + " free spaces");
             } else if(parkingGarages.getValue().equals("Parking Garage 3")){
-                Notification.show("Parking garage 3 has " + (totalSpaces3-occupiedSpaces3) + " free spaces");
+                occupiedSpaces3.addAndGet(reservedRepo.getFreeSpaceCount(park3));
+                Notification.show("Parking garage 3 has " + (totalSpaces3- occupiedSpaces3.get()) + " free spaces");
             }
         });
         reserveButton.addClickListener(click -> {
@@ -97,15 +97,15 @@ public class ParkingView extends VerticalLayout implements HasUrlParameter<Strin
                 reservedRepo.saveAndFlush(reserved);
 
                 if(parkingGarages.getValue().equals("Parking Garage 1")){
-                    ParkingGarageManager parkingGarageManager = new ParkingGarageManager(parkingRepo, reservedRepo, totalSpaces1, occupiedSpaces1);
+                    ParkingGarageManager parkingGarageManager = new ParkingGarageManager(parkingRepo, reservedRepo, totalSpaces1, occupiedSpaces1.get());
 //               System.out.println("Debug: " + parkingGarages.getValue());
                     parkingGarageManager.startThread(parkingGarages.getValue());
                 } else if (parkingGarages.getValue().equals("Parking Garage 2")){
-                    ParkingGarageManager parkingGarageManager = new ParkingGarageManager(parkingRepo, reservedRepo, totalSpaces2, occupiedSpaces2);
+                    ParkingGarageManager parkingGarageManager = new ParkingGarageManager(parkingRepo, reservedRepo, totalSpaces2, occupiedSpaces2.get());
 //               System.out.println("Debug: " + parkingGarages.getValue());
                     parkingGarageManager.startThread(parkingGarages.getValue());
                 } else if (parkingGarages.getValue().equals("Parking Garage 3")){
-                    ParkingGarageManager parkingGarageManager = new ParkingGarageManager(parkingRepo, reservedRepo, totalSpaces3, occupiedSpaces3);
+                    ParkingGarageManager parkingGarageManager = new ParkingGarageManager(parkingRepo, reservedRepo, totalSpaces3, occupiedSpaces3.get());
 //               System.out.println("Debug: " + parkingGarages.getValue());
                     parkingGarageManager.startThread(parkingGarages.getValue());
                 }

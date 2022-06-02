@@ -16,6 +16,10 @@ public class Reserved {
     @JoinColumn(name = "username", referencedColumnName = "username")
     private Person username;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parkid")
+    private Parking parkid;
+
     public Integer getId() {
         return id;
     }
@@ -30,6 +34,14 @@ public class Reserved {
 
     public void setUsername(Person username) {
         this.username = username;
+    }
+
+    public Parking getParkid() {
+        return parkid;
+    }
+
+    public void setParkid(Parking parkid) {
+        this.parkid = parkid;
     }
 
 }

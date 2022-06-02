@@ -1,12 +1,11 @@
 package com.example.demo.views.surface;
 
-import com.example.demo.features.parking.ParkingGarageManager;
+import com.example.demo.features.parking.management.ParkingGarageManager;
 import com.example.demo.repos.PersonRepo;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;

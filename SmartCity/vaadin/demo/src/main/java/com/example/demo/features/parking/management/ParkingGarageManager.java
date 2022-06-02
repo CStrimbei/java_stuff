@@ -1,4 +1,4 @@
-package com.example.demo.features.parking;
+package com.example.demo.features.parking.management;
 
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.server.VaadinService;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ParkingGarageManager {
+public class ParkingGarageManager extends Thread implements Runnable{
     /*TODO: split the three parking garages on three different threads, that update the database regularly with occupied spots
             and reserve spots
     * */

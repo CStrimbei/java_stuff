@@ -73,7 +73,7 @@ public class LoginView extends VerticalLayout {
 
     public void authenticate(String username, String password){
         Person person = personRepo.findByUsername(username);
-        if(person!=null && person.getPassword().equals(personRepo.findPassword(username))){
+        if(person!=null && password.equals(person.getPassword())){
             createRoutes(person.getUsertype());
             if(!person.getUsertype().equals("Admin")){
                 UI.getCurrent().navigate("logged/" + username, QueryParameters.fromString(username));
